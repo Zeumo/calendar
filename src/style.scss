@@ -1,0 +1,74 @@
+#zeumo-calender {
+  padding: 20px;
+
+  .title {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .header {
+    font-weight: bold;
+    margin: 0 0 20px 0;
+  }
+
+  .actions {
+    float: right;
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 5px 10px;
+
+      &:hover {
+        background: #f7f7f7;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+
+  thead th {
+    border-bottom: 1px solid #eee;
+  }
+
+  td {
+    height: 80px;
+    width: 14.28%;
+
+    &.active {
+      background: #f7f7f7;
+
+      .numeral {
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .day {
+    height: 100%;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding: 5px;
+  }
+
+  .day-events {
+    clear: both;
+    font-size: 13px;
+  }
+
+  .event {
+    width: 100%;
+    max-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .numeral {
+    float: right;
+    font-weight: 300;
+  }
+}
