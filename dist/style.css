@@ -15,22 +15,32 @@
       #zeumo-calender .actions a:hover {
         background: #f7f7f7;
         border-radius: 3px; }
+  #zeumo-calender table, #zeumo-calender td, #zeumo-calender th {
+    border-collapse: collapse;
+    padding: 0; }
   #zeumo-calender table {
-    width: 100%; }
+    width: 100%;
+    border-spacing: 0; }
   #zeumo-calender thead th {
-    border-bottom: 1px solid #eee; }
+    border-bottom: 1px solid #eee;
+    padding: 8px 0; }
   #zeumo-calender td {
     height: 80px;
     width: 14.28%; }
     #zeumo-calender td.active {
-      background: #f7f7f7; }
+      background: #f6f2fb;
+      color: rebeccapurple; }
       #zeumo-calender td.active .numeral {
         font-weight: bold;
         font-size: 18px; }
+  #zeumo-calender tbody tr {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee; }
+  #zeumo-calender tbody td:last-child .day {
+    border-right: 1px solid #eee; }
   #zeumo-calender .day {
     height: 100%;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
     padding: 5px; }
   #zeumo-calender .day-events {
     clear: both;
