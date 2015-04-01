@@ -6,11 +6,13 @@ var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var _state = {};
 
 var eventsOnDate = function (_date) {
-  return _.filter(_state.events, function (event) {
+  var events = _.filter(_state.events, function (event) {
     if (date.isBetween(_date, event.start_date, event.end_date)) {
       return event;
     }
   }, []);
+
+  return _.sortBy(events, 'start_date');
 };
 
 module.exports = {
