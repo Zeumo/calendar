@@ -6,8 +6,6 @@ var Calendar = function (el, options) {
   this.el = el;
 
   this.options = _.extend({
-    titleAttr: 'title',
-    dateAttr: 'date'
   }, options);
 
   this.currentDate = new Date();

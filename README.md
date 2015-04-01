@@ -16,11 +16,13 @@ var calendar = new Calendar(document.getElementById('calendar'));
 calendar.render(new Date(), [
   {
     title: 'Today!',
-    date: new Date()
+    start_date: new Date(),
+    end_date: new Date()
   },
   {
-    title: 'A date probably in the future',
-    date: new Date('July 4, 2016')
+    title: "Beer O'clock",
+    start_date: new Date('April 3, 2015'),
+    end_date: new Date('April 6, 2015')
   }
 ]);
 ```

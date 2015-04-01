@@ -11,7 +11,18 @@ module.exports = {
     return new Date(date.getYear(), date.getMonth() + 1, 0).getDate();
   },
 
+  isBetween: function (srcDate, startDate, endDate) {
+    srcDate.setHours(0,0,0,0);
+    startDate.setHours(0,0,0,0);
+    endDate.setHours(0,0,0,0);
+
+    return srcDate >= startDate && srcDate <= endDate;
+  },
+
   isSameDay: function (srcDate, targetDate) {
+    srcDate.setHours(0,0,0,0);
+    targetDate.setHours(0,0,0,0);
+
     return srcDate.getFullYear() === targetDate.getFullYear() &&
             srcDate.getDate() === targetDate.getDate() &&
             srcDate.getMonth() === targetDate.getMonth();

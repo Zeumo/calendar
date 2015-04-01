@@ -29,11 +29,13 @@
     calendar.render(null, [
       {
         title: 'Today!',
-        date: new Date()
+        start_date: new Date(),
+        end_date: new Date()
       },
       {
-        title: 'Beer day',
-        date: new Date('April 3, 2015')
+        title: 'Beer O\'clock',
+        start_date: new Date('April 3, 2015'),
+        end_date: new Date('April 6, 2015')
       }
     ]);
   </script>

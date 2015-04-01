@@ -20,7 +20,7 @@ module.exports = {
 
   eventsOnDate: function (_date) {
     return _.filter(_state.events, function (event) {
-      if (date.isSameDay(_date, event.date)) return event;
+      if (date.isBetween(_date, event.start_date, event.end_date)) return event;
     }, []);
   },
 
@@ -36,13 +36,14 @@ module.exports = {
     var dayTmpl = require('./templates/day.html');
 
     return _.map(days, function (day) {
+      var isDay = day && typeof day === 'number';
       var newDate = new Date(_state.date);
       newDate.setDate(day);
 
       return t(dayTmpl, {
-        day: day,
-        active: day && date.isToday(newDate) ? 'active' : '',
-        events: day && this.events(newDate)
+        day: isDay && day,
+        active: isDay && date.isToday(newDate) ? 'active' : '',
+        events: isDay && this.events(newDate)
       });
     }, this).join('');
   },
