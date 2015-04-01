@@ -1,0 +1,45 @@
+#zeumo-calender {
+  padding: 20px; }
+  #zeumo-calender .title {
+    font-size: 20px;
+    margin-right: 10px; }
+  #zeumo-calender .header {
+    font-weight: bold;
+    margin: 0 0 20px 0; }
+  #zeumo-calender .actions {
+    float: right; }
+    #zeumo-calender .actions a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 5px 10px; }
+      #zeumo-calender .actions a:hover {
+        background: #f7f7f7;
+        border-radius: 3px; }
+  #zeumo-calender table {
+    width: 100%; }
+  #zeumo-calender thead th {
+    border-bottom: 1px solid #eee; }
+  #zeumo-calender td {
+    height: 80px;
+    width: 14.28%; }
+    #zeumo-calender td.active {
+      background: #f7f7f7; }
+      #zeumo-calender td.active .numeral {
+        font-weight: bold;
+        font-size: 18px; }
+  #zeumo-calender .day {
+    height: 100%;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding: 5px; }
+  #zeumo-calender .day-events {
+    clear: both;
+    font-size: 13px; }
+  #zeumo-calender .event {
+    width: 100%;
+    max-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  #zeumo-calender .numeral {
+    float: right;
+    font-weight: 300; }
