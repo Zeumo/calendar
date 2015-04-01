@@ -2,6 +2,8 @@
 
 A simple calendar to render months with events.
 
+![](http://f.cl.ly/items/0J3l3X2J3n3825403M38/demo.mov.gif)
+
 ## Basic usage
 
 ```javascript
