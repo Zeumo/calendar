@@ -4,14 +4,14 @@ A simple calendar to render months with events.
 
 ## Basic usage
 
-```javscript
+```javascript
 var calendar = new Calendar(document.getElementById('calendar'));
 calendar.render();
 ```
 
 ## Rendering events
 
-```javscript
+```javascript
 var calendar = new Calendar(document.getElementById('calendar'));
 calendar.render(new Date(), [
   {
