@@ -11,6 +11,7 @@ var Calendar = function (el, options) {
   }, options);
 
   this.currentDate = new Date();
+  this.calendarEvents = {};
 
   delegateEvents.call(this, this.events);
 };

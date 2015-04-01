@@ -11,11 +11,14 @@ module.exports = {
     return new Date(date.getYear(), date.getMonth() + 1, 0).getDate();
   },
 
+  isSameDay: function (srcDate, targetDate) {
+    return srcDate.getFullYear() === targetDate.getFullYear() &&
+            srcDate.getDate() === targetDate.getDate() &&
+            srcDate.getMonth() === targetDate.getMonth();
+  },
+
   isToday: function (date) {
-    var now = new Date();
-    return now.getFullYear() === date.getFullYear() &&
-            now.getDate() === date.getDate() &&
-            now.getMonth() === date.getMonth();
+    return this.isSameDay(new Date(), date);
   },
 
   nextMonthDate: function (currentDate) {

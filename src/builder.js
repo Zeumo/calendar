@@ -18,6 +18,20 @@ module.exports = {
     );
   },
 
+  eventsOnDate: function (_date) {
+    return _.filter(_state.events, function (event) {
+      if (date.isSameDay(_date, event.date)) return event;
+    }, []);
+  },
+
+  events: function (_date) {
+    var eventTmpl = require('./templates/event.html');
+    var htmlStr = _.map(this.eventsOnDate(_date), function (event) {
+      return t(eventTmpl, event);
+    });
+    return htmlStr.join('');
+  },
+
   week: function (days) {
     var dayTmpl = require('./templates/day.html');
 
@@ -26,10 +40,11 @@ module.exports = {
       newDate.setDate(day);
 
       return t(dayTmpl, {
+        day: day,
         active: day && date.isToday(newDate) ? 'active' : '',
-        day: day
+        events: day && this.events(newDate)
       });
-    }).join('');
+    }, this).join('');
   },
 
   month: function (weeks) {

@@ -26,11 +26,13 @@ module.exports = {
     this.render(new Date());
   },
 
-  render: function (newDate) {
+  render: function (newDate, calendarEvents) {
     this.currentDate = newDate || this.currentDate;
+    this.calendarEvents = calendarEvents || this.calendarEvents;
 
     var htmlStr = builder.template({
-      date: this.currentDate
+      date: this.currentDate,
+      events: this.calendarEvents
     });
 
     this.el.innerHTML = htmlStr;
