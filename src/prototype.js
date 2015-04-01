@@ -29,11 +29,9 @@ module.exports = {
     this.currentDate = newDate || this.currentDate;
     this.calendarEvents = calendarEvents || this.calendarEvents;
 
-    var htmlStr = builder.template({
+    this.el.innerHTML = builder.template({
       date: this.currentDate,
       events: this.calendarEvents
     });
-
-    this.el.innerHTML = htmlStr;
   }
 };
