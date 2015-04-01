@@ -19,7 +19,9 @@ module.exports = {
   },
 
   events: function (_date) {
-    var eventTmpl = _.template(require('./templates/event.html'));
+    var eventTmpl = _.template(require('./templates/event.html'), {
+      'imports': { 'simpleTime': date.simpleTime }
+    });
     return _.map(eventsOnDate(_date), eventTmpl).join('');
   },
 

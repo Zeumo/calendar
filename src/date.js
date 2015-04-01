@@ -15,10 +15,25 @@ module.exports = {
     return date.toLocaleString('en-us', { month: "long" });
   },
 
+  simpleTime: function (date) {
+    var str = [];
+    var hr = date.getHours();
+    var min = date.getMinutes();
+
+    var meridian = hr < 12 ? 'a' : 'p';
+    hr = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;
+
+    str.push(hr);
+    min && str.push(':' + min);
+    str.push(meridian);
+
+    return str.join('');
+  },
+
   isBetween: function (srcDate, startDate, endDate) {
-    srcDate.setHours(0,0,0,0);
-    startDate.setHours(0,0,0,0);
-    endDate.setHours(0,0,0,0);
+    srcDate   = _.clone(srcDate).setHours(0,0,0,0);
+    startDate = _.clone(startDate).setHours(0,0,0,0);
+    endDate   = _.clone(endDate).setHours(0,0,0,0);
 
     return srcDate >= startDate && srcDate <= endDate;
   },
