@@ -1,8 +1,10 @@
-<td class="{active}">
-  <div class="{className}">
-    <span class="numeral">{day}</span>
-    <div class="day-events">
-      {events}
+<td class="<%= active %>">
+  <% if (day) { %>
+    <div class="day">
+      <span class="numeral"><%= day %></span>
+      <div class="day-events">
+        <%= events %>
+      </div>
     </div>
-  </div>
+  <% } %>
 </td>

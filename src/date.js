@@ -11,6 +11,10 @@ module.exports = {
     return new Date(date.getYear(), date.getMonth() + 1, 0).getDate();
   },
 
+  getMonthName: function (date) {
+    return date.toLocaleString('en-us', { month: "long" });
+  },
+
   isBetween: function (srcDate, startDate, endDate) {
     srcDate.setHours(0,0,0,0);
     startDate.setHours(0,0,0,0);
@@ -23,9 +27,7 @@ module.exports = {
     srcDate.setHours(0,0,0,0);
     targetDate.setHours(0,0,0,0);
 
-    return srcDate.getFullYear() === targetDate.getFullYear() &&
-            srcDate.getDate() === targetDate.getDate() &&
-            srcDate.getMonth() === targetDate.getMonth();
+    return srcDate.getTime() === targetDate.getTime();
   },
 
   isToday: function (date) {
