@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -11,7 +13,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: '../html-template-loader.js'
+        loader: path.join(__dirname, 'loaders/html-template-loader.js')
       }
     ]
   }

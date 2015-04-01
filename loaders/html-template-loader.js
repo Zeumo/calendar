@@ -8,5 +8,5 @@ module.exports = function (contents) {
     .replace(/\"/g, '\\"')
     .replace(/\n\s*/g, '');
 
-  return 'module.exports = "' + contents + '"';
+  return 'module.exports = "' + contents + '";';
 };
