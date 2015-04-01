@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div id="calendar"></div>
+
+  <script src="dist/calendar.js"></script>
+  <script>
+    var calendar = new Calendar(document.getElementById('calendar'));
+    calendar.render(new Date());
+  </script>
+</body>
+</html>
