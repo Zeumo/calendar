@@ -45,14 +45,25 @@ module.exports = {
     return date;
   },
 
+  // [
+  //   [01, 02, 03, 04, 05, 06, 07],
+  //   [08, 09, 10, 11, 12, 13, 14],
+  //   [15, 16, 17, 18, 19, 20, 21],
+  //   [22, 23, 24, 25, 26, 27, 28],
+  //   [29, 30, 31],
+  // ]
   buildWeeks: function (date) {
-    var totalDays  = this.daysInMonth(date);
-    var firstDay   = this.beginningOfMonth(date).getDay();
+    var totalDays = this.daysInMonth(date);
 
+    // 0 = Sun, 1 = Mon, 2, Tues, ...
+    var firstDay = this.beginningOfMonth(date).getDay();
+
+    // [1, 2, 3, 4, 5, ... 31]
     var days = _(totalDays).times()
       .map(function (i) { return i + 1; })
       .value();
 
+    // ['', '', 1, 2, 3, 4, 5, ... 31]
     _.times(firstDay, function () {
       days.unshift('');
     });
