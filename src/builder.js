@@ -43,7 +43,8 @@ module.exports = {
       return t(dayTmpl, {
         day: isDay && day,
         active: isDay && date.isToday(newDate) ? 'active' : '',
-        events: isDay && this.events(newDate)
+        events: isDay && this.events(newDate),
+        className: isDay ? 'day' : ''
       });
     }, this).join('');
   },

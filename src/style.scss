@@ -26,12 +26,19 @@
     }
   }
 
+  table, td, th {
+    border-collapse: collapse;
+    padding: 0;
+  }
+
   table {
     width: 100%;
+    border-spacing: 0;
   }
 
   thead th {
     border-bottom: 1px solid #eee;
+    padding: 8px 0;
   }
 
   td {
@@ -48,10 +55,20 @@
     }
   }
 
+  tbody tr {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  tbody td:last-child {
+    .day {
+      border-right: 1px solid #eee;
+    }
+  }
+
   .day {
     height: 100%;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
     padding: 5px;
   }
 
