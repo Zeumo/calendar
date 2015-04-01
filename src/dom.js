@@ -1,12 +1,12 @@
 var _ = require('lodash');
 
-var _element = function (tag) {
-  return _.wrap(_.identity, function (fn, src) {
-    return '<' + tag + '>' + fn(src) + '</'+ tag + '>';
-  });
+var _wrap = function (tag) {
+  return function (src) {
+    return '<' + tag + '>' + src + '</'+ tag + '>';
+  };
 };
 
 module.exports = {
-  th: _element('th'),
-  tr: _element('tr')
+  th: _wrap('th'),
+  tr: _wrap('tr')
 };
