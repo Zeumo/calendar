@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var builder = require('./builder');
 var date = require('./date');
 
