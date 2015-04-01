@@ -1,5 +1,3 @@
-var _ = require('lodash');
-
 var _wrap = function (tag) {
   return function (src) {
     return '<' + tag + '>' + src + '</'+ tag + '>';
