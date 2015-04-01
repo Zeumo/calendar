@@ -22,7 +22,10 @@ module.exports = {
 
   events: function (_date) {
     var eventTmpl = _.template(require('./templates/event.html'), {
-      'imports': { 'simpleTime': date.simpleTime }
+      'imports': {
+        'date': date,
+        'today': _date
+      }
     });
     return _.map(eventsOnDate(_date), eventTmpl).join('');
   },

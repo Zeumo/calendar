@@ -19,6 +19,7 @@ module.exports = {
     var str = [];
     var hr = date.getHours();
     var min = date.getMinutes();
+    min = min ? '0' + min : '';
 
     var meridian = hr < 12 ? 'a' : 'p';
     hr = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;
@@ -39,6 +40,8 @@ module.exports = {
   },
 
   isSameDay: function (srcDate, targetDate) {
+    srcDate    = _.clone(srcDate);
+    targetDate = _.clone(targetDate);
     srcDate.setHours(0,0,0,0);
     targetDate.setHours(0,0,0,0);
 
