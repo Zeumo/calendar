@@ -54,16 +54,13 @@ module.exports = {
 
   template: function (state) {
     _state = state;
-
     var calendarTmpl = _.template(require('./templates/calendar.html'));
-    var weeks = date.buildWeeks(_state.date);
-    var year = _state.date.getFullYear();
 
     return calendarTmpl({
       monthName: date.getMonthName(_state.date),
       year: _state.date.getFullYear(),
       header: this.dayNames(),
-      weeks: this.month(weeks)
+      weeks: this.month(date.buildWeeks(_state.date))
     });
   }
 };
