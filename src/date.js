@@ -22,7 +22,7 @@ module.exports = {
     var str = [];
     var hr = date.getHours();
     var min = date.getMinutes();
-    min = min ? '0' + min : '';
+    min = min && min < 10 ? '0' + min : min;
 
     var meridian = hr < 12 ? 'a' : 'p';
     hr = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;

@@ -22,6 +22,15 @@ describe('date', function () {
     expect(date.getMonthName(today)).toEqual('April');
   });
 
+  it('returns the simple time', function () {
+    var _1_00pm = new Date('April 6 2015 13:00');
+    var _1_00am = new Date('April 6 2015 1:00');
+    var _3_45pm = new Date('April 6 2015 15:45');
+    expect(date.simpleTime(_1_00pm)).toEqual('1p');
+    expect(date.simpleTime(_1_00am)).toEqual('1a');
+    expect(date.simpleTime(_3_45pm)).toEqual('3:45p');
+  });
+
   it('checks if a date in a range', function () {
     expect(date.isBetween(today, new Date('April 5 2015'), new Date('April 7 2015'))).toBe(true);
     expect(date.isBetween(today, new Date('August 1 2015'), new Date('August 3 2015'))).toBe(false);
