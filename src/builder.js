@@ -60,9 +60,10 @@ module.exports = {
     var year = _state.date.getFullYear();
 
     return calendarTmpl({
-      title: [date.getMonthName(_state.date), year].join(' '),
+      monthName: date.getMonthName(_state.date),
+      year: _state.date.getFullYear(),
       header: this.dayNames(),
-      month: this.month(weeks)
+      weeks: this.month(weeks)
     });
   }
 };
