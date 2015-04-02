@@ -30,26 +30,25 @@ module.exports = {
     return _.map(eventsOnDate(_date), eventTmpl).join('');
   },
 
-  week: function (days) {
+  day: function (day) {
     var dayTmpl = _.template(require('./templates/day.html'));
+    var isDay = day && typeof day === 'number';
+    var newDate = new Date(_state.date);
+    newDate.setDate(day);
 
-    return _.map(days, function (day) {
-      var isDay = day && typeof day === 'number';
-      var newDate = new Date(_state.date);
-      newDate.setDate(day);
+    return dayTmpl({
+      day: day,
+      active: isDay && date.isToday(newDate) ? 'active' : '',
+      events: this.events(newDate)
+    });
+  },
 
-      return dayTmpl({
-        day: day,
-        active: isDay && date.isToday(newDate) ? 'active' : '',
-        events: this.events(newDate)
-      });
-    }, this).join('');
+  week: function (days) {
+    return dom.tr(_.map(days, this.day, this).join(''));
   },
 
   month: function (weeks) {
-    return _.map(weeks, function (week) {
-      return dom.tr(this.week(week));
-    }, this).join('');
+    return _.map(weeks, this.week, this).join('');
   },
 
   template: function (state) {

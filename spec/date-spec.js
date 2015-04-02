@@ -11,8 +11,8 @@ describe('date', function () {
   });
 
   it('returns days in a month', function () {
-    var normalFebuary = new Date('Feb 2015');
-    var leapYearFebuary = new Date('Feb 2016');
+    var normalFebuary = new Date('Feb 1 2015');
+    var leapYearFebuary = new Date('Feb 1 2016');
     expect(date.daysInMonth(today)).toEqual(30);
     expect(date.daysInMonth(normalFebuary)).toEqual(28);
     expect(date.daysInMonth(leapYearFebuary)).toEqual(29);
@@ -42,11 +42,11 @@ describe('date', function () {
   });
 
   it('finds the leading month', function () {
-    expect(date.nextMonthDate(today)).toEqual(new Date('May 2015'));
+    expect(date.nextMonthDate(today)).toEqual(new Date('May 1 2015'));
   });
 
   it('finds the trailing month', function () {
-    expect(date.prevMonthDate(today)).toEqual(new Date('March 2015'));
+    expect(date.prevMonthDate(today)).toEqual(new Date('March 1 2015'));
   });
 
   it('returns an array of weeks', function () {
@@ -64,7 +64,7 @@ describe('date', function () {
       [ 19, 20, 21, 22, 23, 24, 25 ],
       [ 26, 27, 28, 29, 30 ]
     ];
-    expect(date.buildWeeks(new Date('March 2015'))).toEqual(marchWeeks);
+    expect(date.buildWeeks(new Date('March 1 2015'))).toEqual(marchWeeks);
     expect(date.buildWeeks(today)).toEqual(aprilWeeks);
   });
 });
