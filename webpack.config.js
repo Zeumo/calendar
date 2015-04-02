@@ -15,7 +15,7 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        loader: path.join(__dirname, 'loaders/html-template-loader.js')
+        loader: path.join(__dirname, 'loaders/jst-loader')
       }
     ]
   }
