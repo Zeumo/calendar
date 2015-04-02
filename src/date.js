@@ -1,3 +1,6 @@
+var _ = require('lodash');
+var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 module.exports = {
   beginningOfMonth: function (date) {
     return new Date(date.getFullYear(), date.getMonth(), 1);
@@ -12,7 +15,7 @@ module.exports = {
   },
 
   getMonthName: function (date) {
-    return date.toLocaleString('en-us', { month: "long" });
+    return MONTHS[date.getMonth()];
   },
 
   simpleTime: function (date) {
