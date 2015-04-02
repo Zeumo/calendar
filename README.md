@@ -35,3 +35,7 @@ calendar.render(new Date(), [
 `npm run` to list available tasks
 
 In development probably run `npm run watch`
+
+## Specs
+
+Run `jasmine`. Requires jasmine install (`npm install -g jasmine`).
