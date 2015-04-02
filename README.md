@@ -38,4 +38,4 @@ In development probably run `npm run watch`
 
 ## Specs
 
-Run `jasmine`. Requires jasmine install (`npm install -g jasmine`).
+`karma start`
