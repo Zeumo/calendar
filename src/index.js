@@ -6,6 +6,7 @@ var Calendar = function (el, options) {
   this.el = el;
 
   this.options = _.extend({
+    onDayClick: _.noop
   }, options);
 
   this.currentDate = new Date();

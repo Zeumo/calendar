@@ -6,7 +6,8 @@ module.exports = {
   events: {
     'click .next': 'handleNextMonth',
     'click .prev': 'handlePrevMonth',
-    'click .today': 'handleToday'
+    'click .today': 'handleToday',
+    'click .day': 'handleDay'
   },
 
   _delegate: function () {
@@ -34,5 +35,9 @@ module.exports = {
   handleToday: function (e) {
     e.preventDefault();
     this.render(new Date());
+  },
+
+  handleDay: function(e) {
+    this.options.onDayClick(new Date($(e.currentTarget).data('date')))
   }
 };

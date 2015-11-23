@@ -38,6 +38,7 @@ module.exports = {
 
     return dayTmpl({
       day: day,
+      date: newDate,
       active: isDay && date.isToday(newDate) ? 'active' : '',
       events: this.events(newDate)
     });
