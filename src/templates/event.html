@@ -1,8 +1,17 @@
 <div class="event">
-  <span class="event-title">
-    <% if (date.isSameDay(today, start_date)) { %>
-      <%= date.simpleTime(start_date) %>&nbsp;
-    <% } %>
-    <%= title %>
-  </span>
+  <% if (url) { %>
+    <a href="<%= url %>" class="event-title">
+      <% if (date.isSameDay(today, start_date)) { %>
+        <%= date.simpleTime(start_date) %>&nbsp;
+      <% } %>
+      <%= title %>
+    </a>
+  <% } else { %>
+    <span class="event-title">
+      <% if (date.isSameDay(today, start_date)) { %>
+        <%= date.simpleTime(start_date) %>&nbsp;
+      <% } %>
+      <%= title %>
+    </span>
+  <% } %>
 </div>
