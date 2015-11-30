@@ -38,6 +38,6 @@ module.exports = {
   },
 
   handleDay: function(e) {
-    this.options.onDayClick(new Date($(e.currentTarget).data('date')))
+    this.options.onDayClick(e, new Date($(e.currentTarget).data('date')))
   }
 };
