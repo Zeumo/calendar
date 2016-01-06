@@ -32,9 +32,9 @@ calendar.render(new Date(), [
 ## Development
 
 `npm install`
-`npm run` to list available tasks
+`npm start`
 
-In development probably run `npm run watch`
+`npm run` to list available tasks
 
 ## Specs
 

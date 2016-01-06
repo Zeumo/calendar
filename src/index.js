@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var events = require('./events');
 var render = require('./render');
+require('./style.scss')
 
 var Calendar = function (el, options) {
   this.el = el;

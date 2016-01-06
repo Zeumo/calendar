@@ -16,6 +16,10 @@ module.exports = {
       {
         test: /\.html$/,
         loader: path.join(__dirname, 'loaders/jst-loader')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
       }
     ]
   }
