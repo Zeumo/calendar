@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --inline --hot",
     "build": "webpack -p",
     "test": "mocha",
-    "karma": "karma start"
+    "karma": "karma start",
+    "preversion": "npm run build && git commit dist -m \"Dist\""
   },
   "author": "",
   "license": "ISC",
