@@ -1,6 +1,10 @@
 var _ = require('lodash');
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+var range = function (start, end) {
+  return _.range(start, end + start)
+}
+
 module.exports = {
   beginningOfMonth: function (date) {
     return new Date(date.getFullYear(), date.getMonth(), 1);
@@ -91,19 +95,36 @@ module.exports = {
   // ]
   buildWeeks: function (date) {
     var totalDays = this.daysInMonth(date);
+    var prevMonthDate = this.prevMonthDate(date)
+    var nextMonthDate = this.nextMonthDate(date)
+
+    var daysPrevMonth = this.daysInMonth(prevMonthDate)
+    var daysNextMonth = this.daysInMonth(nextMonthDate)
 
     // 0 = Sun, 1 = Mon, 2, Tues, ...
-    var firstDay = this.beginningOfMonth(date).getDay();
+    var firstDayOffset = this.beginningOfMonth(date).getDay();
+
+    var toDates = function (days, _date) {
+      return days.map(function (d) {
+        return new Date(new Date(_date).setDate(d));
+      });
+    };
 
     // [1, 2, 3, 4, 5, ... 31]
-    var days = _(totalDays).times()
-      .map(function (i) { return i + 1; })
-      .value();
+    var days = toDates(range(1, totalDays), date);
 
-    // ['', '', 1, 2, 3, 4, 5, ... 31]
-    _.times(firstDay, function () {
-      days.unshift('');
-    });
+    var remainingDays = 7 - ((totalDays + firstDayOffset) % 7);
+    remainingDays = (totalDays + firstDayOffset) / 7 < 5
+      ? remainingDays + 7
+      : remainingDays;
+
+      // [29, 30, 31, 1, 2, 3, 4]
+    var nextDays = _.take(range(1, daysNextMonth), remainingDays);
+    days = days.concat(toDates(nextDays, nextMonthDate));
+
+    // [29, 30, 1, 2, 3, 4, 5, ... 31]
+    var prevDays = _.takeRight(range(1, daysPrevMonth), firstDayOffset)
+    days = toDates(prevDays, prevMonthDate).concat(days)
 
     return _.chunk(days, 7);
   }
