@@ -1,5 +1,5 @@
 <div class="event">
-  <% if (url) { %>
+  <% if (obj.url) { %>
     <a href="<%= url %>" class="event-title">
       <% if (date.isSameDay(today, start_date)) { %>
         <%= date.simpleTime(start_date) %>&nbsp;

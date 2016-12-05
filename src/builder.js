@@ -45,11 +45,11 @@ module.exports = {
   },
 
   week: function (days) {
-    return dom.tr(_.map(days, this.day, this).join(''));
+    return dom.tr(days.map(this.day.bind(this)).join(''));
   },
 
   month: function (weeks) {
-    return _.map(weeks, this.week, this).join('');
+    return weeks.map(this.week.bind(this)).join('');
   },
 
   template: function (state) {
