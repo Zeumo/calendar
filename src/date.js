@@ -25,7 +25,7 @@ module.exports = {
     min = min && min < 10 ? '0' + min : min;
 
     var meridian = hr < 12 ? 'a' : 'p';
-    hr = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;
+    hr = hr % 12 || 12
 
     str.push(hr);
     min && str.push(':' + min);
@@ -35,20 +35,23 @@ module.exports = {
   },
 
   isBetween: function (srcDate, startDate, endDate) {
-    srcDate   = _.clone(srcDate).setHours(0,0,0,0);
-    startDate = _.clone(startDate).setHours(0,0,0,0);
-    endDate   = _.clone(endDate).setHours(0,0,0,0);
+    var _srcDate   = new Date(srcDate).setHours(0,0,0,0);
+    var _startDate = new Date(startDate).setHours(0,0,0,0);
+    var _endDate   = new Date(endDate).setHours(0,0,0,0);
 
-    return srcDate >= startDate && srcDate <= endDate;
+    return _srcDate >= _startDate && srcDate <= _endDate;
+  },
+
+  isAdjacentMonth: function (srcDate, trailingDate) {
+    srcDate = srcDate || new Date();
+    var srcMonth = srcDate.getMonth();
+    var trailingMonth = trailingDate.getMonth();
+
+    return trailingMonth !== srcMonth;
   },
 
   isSameDay: function (srcDate, targetDate) {
-    srcDate    = _.clone(srcDate);
-    targetDate = _.clone(targetDate);
-    srcDate.setHours(0,0,0,0);
-    targetDate.setHours(0,0,0,0);
-
-    return srcDate.getTime() === targetDate.getTime();
+    return srcDate.toString() === targetDate.toString();
   },
 
   isToday: function (date) {
