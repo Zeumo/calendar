@@ -1,6 +1,6 @@
 #zeumo-calender {
   padding: 20px;
-  height: 800px;
+  height: 100%;
 
   .title {
     font-size: 20px;
@@ -44,7 +44,7 @@
   }
 
   td {
-    height: 80px;
+    height: calc(100% / 6);
     width: 14.28%;
 
     &.active {
@@ -73,6 +73,7 @@
     height: 100%;
     border-left: 1px solid #eee;
     padding: 5px;
+    box-sizing: content-box;
   }
 
   .day-trailing {
