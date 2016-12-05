@@ -30,17 +30,15 @@ module.exports = {
     return _.map(eventsOnDate(_date), eventTmpl).join('');
   },
 
-  day: function (day) {
+  day: function (_date) {
     var dayTmpl = _.template(require('./templates/day.html'));
-    var isDay = day && typeof day === 'number';
-    var newDate = new Date(_state.date);
-    newDate.setDate(day);
 
     return dayTmpl({
-      day: day,
-      date: newDate,
-      active: isDay && date.isToday(newDate) ? 'active' : '',
-      events: this.events(newDate)
+      day: _date.getDate(),
+      date: _date,
+      active: date.isToday(_date) ? 'active' : '',
+      trailing: date.isAdjacentMonth(_state.date, _date),
+      events: this.events(_date)
     });
   },
 
