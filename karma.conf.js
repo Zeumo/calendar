@@ -5,6 +5,14 @@ var path = require('path');
 module.exports = function(config) {
   config.set({
 
+    plugins: [
+      'karma-mocha',
+      'karma-webpack',
+      'karma-chrome-launcher',
+      'karma-safari-launcher',
+      'karma-firefox-launcher',
+    ],
+
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -27,7 +35,7 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-     preprocessors: {
+    preprocessors: {
       'src/**/**': ['webpack'],
       'test/**.js': ['webpack']
     },

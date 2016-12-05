@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --inline --hot",
     "build": "webpack -p",
-    "test": "mocha"
+    "test": "mocha",
+    "karma": "karma start"
   },
   "author": "",
   "license": "ISC",
