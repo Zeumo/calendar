@@ -1,8 +1,4 @@
-var _wrap = function (tag) {
-  return function (src) {
-    return '<' + tag + '>' + src + '</'+ tag + '>'
-  }
-}
+var _wrap = (tag) => (src) => '<' + tag + '>' + src + '</'+ tag + '>'
 
 export default {
   th: _wrap('th'),

@@ -5,8 +5,8 @@ import { SHORT_DAY_NAMES } from './locale'
 
 var _state = {}
 
-const eventsOnDate = function (_date) {
-  let events = filter(_state.events, function (event) {
+const eventsOnDate = (_date) => {
+  let events = filter(_state.events, (event) => {
     if (date.isBetween(_date, event.start_date, event.end_date)) {
       return event
     }
@@ -16,11 +16,11 @@ const eventsOnDate = function (_date) {
 }
 
 export default {
-  dayNames: function () {
+  dayNames() {
     return dom.tr(SHORT_DAY_NAMES.map(dom.th).join(''))
   },
 
-  events: function (_date) {
+  events(_date) {
     var eventTmpl = template(require('./templates/event.html'), {
       'imports': {
         'date': date,
@@ -30,7 +30,7 @@ export default {
     return eventsOnDate(_date).map(eventTmpl).join('')
   },
 
-  day: function (_date) {
+  day(_date) {
     var dayTmpl = template(require('./templates/day.html'))
 
     return dayTmpl({
@@ -42,15 +42,15 @@ export default {
     })
   },
 
-  week: function (days) {
+  week(days) {
     return dom.tr(days.map(this.day.bind(this)).join(''))
   },
 
-  month: function (weeks) {
+  month(weeks) {
     return weeks.map(this.week.bind(this)).join('')
   },
 
-  template: function (state) {
+  template(state) {
     _state = state
     var calendarTmpl = template(require('./templates/calendar.html'))
 

@@ -1,7 +1,7 @@
 import builder from './builder'
 
-var parseDates = function(events) {
-  return _.map(events, function(event) {
+var parseDates = (events) => {
+  return _.map(events, (event) => {
     if (event.start_date instanceof Date) {
       return event
     } else {

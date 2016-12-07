@@ -10,7 +10,7 @@ export default {
     'click .day': 'handleDay'
   },
 
-  _delegate: function () {
+  _delegate() {
     _.forEach(this.events, function (handler, k) {
       var parts = k.split(' ')
       var selector = parts[1],
@@ -20,24 +20,24 @@ export default {
     }.bind(this))
   },
 
-  handleNextMonth: function (e) {
+  handleNextMonth(e) {
     e.preventDefault()
     var newDate = date.nextMonthDate(this.currentDate)
     this.render(newDate)
   },
 
-  handlePrevMonth: function (e) {
+  handlePrevMonth(e) {
     e.preventDefault()
     var newDate = date.prevMonthDate(this.currentDate)
     this.render(newDate)
   },
 
-  handleToday: function (e) {
+  handleToday(e) {
     e.preventDefault()
     this.render(new Date())
   },
 
-  handleDay: function(e) {
+  handleDay(e) {
     this.options.onDayClick(e, new Date($(e.currentTarget).data('date')))
   }
 }

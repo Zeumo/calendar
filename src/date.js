@@ -1,28 +1,26 @@
 import { take, takeRight, chunk, range } from 'lodash'
 import { LONG_MONTH_NAMES } from './locale'
 
-const inclusiveRange = function (start, end) {
-  return range(start, end + 1)
-}
+const inclusiveRange = (start, end) => range(start, end + 1)
 
 export default {
-  beginningOfMonth: function (date) {
+  beginningOfMonth(date) {
     return new Date(date.getFullYear(), date.getMonth(), 1)
   },
 
-  endOfMonth: function (date) {
+  endOfMonth(date) {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0)
   },
 
-  daysInMonth: function(date) {
+  daysInMonth(date) {
     return new Date(date.getYear(), date.getMonth() + 1, 0).getDate()
   },
 
-  getMonthName: function (date) {
+  getMonthName(date) {
     return LONG_MONTH_NAMES[date.getMonth()]
   },
 
-  simpleTime: function (date) {
+  simpleTime(date) {
     let str = []
     let hr = date.getHours()
     let min = date.getMinutes()
@@ -38,7 +36,7 @@ export default {
     return str.join('')
   },
 
-  isBetween: function (srcDate, startDate, endDate) {
+  isBetween(srcDate, startDate, endDate) {
     let _srcDate   = new Date(srcDate).setHours(0,0,0,0)
     let _startDate = new Date(startDate).setHours(0,0,0,0)
     let _endDate   = new Date(endDate).setHours(0,0,0,0)
@@ -46,7 +44,7 @@ export default {
     return _srcDate >= _startDate && srcDate <= _endDate
   },
 
-  isAdjacentMonth: function (srcDate, trailingDate) {
+  isAdjacentMonth(srcDate, trailingDate) {
     srcDate = srcDate || new Date()
     let srcMonth = srcDate.getMonth()
     let trailingMonth = trailingDate.getMonth()
@@ -54,15 +52,15 @@ export default {
     return trailingMonth !== srcMonth
   },
 
-  isSameDay: function (srcDate, targetDate) {
+  isSameDay(srcDate, targetDate) {
     return srcDate.toString() === targetDate.toString()
   },
 
-  isToday: function (date) {
+  isToday(date) {
     return this.isSameDay(new Date(), date)
   },
 
-  nextMonthDate: function (currentDate) {
+  nextMonthDate(currentDate) {
     let date, currentMonth = currentDate.getMonth()
 
     if (currentMonth === 11) {
@@ -74,7 +72,7 @@ export default {
     return date
   },
 
-  prevMonthDate: function (currentDate) {
+  prevMonthDate(currentDate) {
     let date, currentMonth = currentDate.getMonth()
 
     if (currentMonth === 0) {
@@ -93,7 +91,7 @@ export default {
   //   [22, 23, 24, 25, 26, 27, 28],
   //   [29, 30, 31],
   // ]
-  buildWeeks: function (date) {
+  buildWeeks(date) {
     let totalDays = this.daysInMonth(date)
     let prevMonthDate = this.prevMonthDate(date)
     let nextMonthDate = this.nextMonthDate(date)
