@@ -1,6 +1,7 @@
-var _ = require('lodash')
-var events = require('./events')
-var render = require('./render')
+import _ from 'lodash'
+import events from './events'
+import render from './render'
+
 require('./style.scss')
 
 var Calendar = function (el, options) {

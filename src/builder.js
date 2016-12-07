@@ -1,6 +1,6 @@
-var _ = require('lodash')
-var date = require('./date')
-var dom = require('./dom')
+import _ from 'lodash'
+import date from './date'
+import dom from './dom'
 
 var DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 var _state = {}
@@ -15,7 +15,7 @@ var eventsOnDate = function (_date) {
   return _.sortBy(events, 'start_date')
 }
 
-module.exports = {
+export default {
   dayNames: function () {
     return dom.tr(DAY_NAMES.map(dom.th).join(''))
   },

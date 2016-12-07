@@ -1,4 +1,4 @@
-var builder = require('./builder')
+import builder from './builder'
 
 var parseDates = function(events) {
   return _.map(events, function(event) {
@@ -13,7 +13,7 @@ var parseDates = function(events) {
   })
 }
 
-module.exports = function (newDate, calendarEvents) {
+export default function (newDate, calendarEvents) {
   this.currentDate = newDate || this.currentDate
   this.calendarEvents = parseDates(calendarEvents || this.calendarEvents)
 

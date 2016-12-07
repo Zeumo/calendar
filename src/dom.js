@@ -4,7 +4,7 @@ var _wrap = function (tag) {
   }
 }
 
-module.exports = {
+export default {
   th: _wrap('th'),
   tr: _wrap('tr')
 }

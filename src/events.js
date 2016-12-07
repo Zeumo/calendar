@@ -1,8 +1,8 @@
-var _ = require('lodash')
-var $ = require('jquery')
-var date = require('./date')
+import _ from 'lodash'
+import $ from 'jquery'
+import date from './date'
 
-module.exports = {
+export default {
   events: {
     'click .next': 'handleNextMonth',
     'click .prev': 'handlePrevMonth',

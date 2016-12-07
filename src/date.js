@@ -1,11 +1,11 @@
-var _ = require('lodash')
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+import _ from 'lodash'
 
 var range = function (start, end) {
   return _.range(start, end + start)
 }
 
-module.exports = {
+export default {
   beginningOfMonth: function (date) {
     return new Date(date.getFullYear(), date.getMonth(), 1)
   },
