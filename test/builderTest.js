@@ -1,8 +1,8 @@
-var expect = require('unexpected')
-var jsdom = require('mocha-jsdom')
+import expect from 'unexpected'
+import jsdom from 'mocha-jsdom'
 
-var date = require('../src/date')
-var builder = require('../src/builder')
+import date from '../src/date'
+import builder from '../src/builder'
 
 var _state = {
   date: new Date('April 6, 2015')

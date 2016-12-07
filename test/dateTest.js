@@ -1,5 +1,5 @@
-var expect = require('unexpected')
-var date = require('../src/date')
+import expect from 'unexpected'
+import date from '../src/date'
 
 var TODAY = new Date('April 6 2015')
 
