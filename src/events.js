@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import $ from 'jquery'
 import date from './date'
 
@@ -11,13 +10,12 @@ export default {
   },
 
   _delegate() {
-    _.forEach(this.events, function (handler, k) {
-      var parts = k.split(' ')
-      var selector = parts[1],
-        eventType = parts[0]
+    Object.keys(this.events).forEach((key, i) => {
+      let handler = this.events[key]
+      let [eventType, selector] = key.split(' ')
 
       $(this.el).on(eventType, selector, this[handler].bind(this))
-    }.bind(this))
+    })
   },
 
   handleNextMonth(e) {
@@ -38,6 +36,6 @@ export default {
   },
 
   handleDay(e) {
-    this.options.onDayClick(e, new Date($(e.currentTarget).data('date')))
+    this.options.onDayClick(e, new Date(e.currentTarget.dataset.date))
   }
 }
