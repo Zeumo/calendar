@@ -1,6 +1,10 @@
 var _ = require('lodash');
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+var range = function (start, end) {
+  return _.range(start, end + start)
+}
+
 module.exports = {
   beginningOfMonth: function (date) {
     return new Date(date.getFullYear(), date.getMonth(), 1);
@@ -25,7 +29,7 @@ module.exports = {
     min = min && min < 10 ? '0' + min : min;
 
     var meridian = hr < 12 ? 'a' : 'p';
-    hr = hr > 12 ? hr - 12 : hr === 0 ? 12 : hr;
+    hr = hr % 12 || 12
 
     str.push(hr);
     min && str.push(':' + min);
@@ -35,20 +39,23 @@ module.exports = {
   },
 
   isBetween: function (srcDate, startDate, endDate) {
-    srcDate   = _.clone(srcDate).setHours(0,0,0,0);
-    startDate = _.clone(startDate).setHours(0,0,0,0);
-    endDate   = _.clone(endDate).setHours(0,0,0,0);
+    var _srcDate   = new Date(srcDate).setHours(0,0,0,0);
+    var _startDate = new Date(startDate).setHours(0,0,0,0);
+    var _endDate   = new Date(endDate).setHours(0,0,0,0);
 
-    return srcDate >= startDate && srcDate <= endDate;
+    return _srcDate >= _startDate && srcDate <= _endDate;
+  },
+
+  isAdjacentMonth: function (srcDate, trailingDate) {
+    srcDate = srcDate || new Date();
+    var srcMonth = srcDate.getMonth();
+    var trailingMonth = trailingDate.getMonth();
+
+    return trailingMonth !== srcMonth;
   },
 
   isSameDay: function (srcDate, targetDate) {
-    srcDate    = _.clone(srcDate);
-    targetDate = _.clone(targetDate);
-    srcDate.setHours(0,0,0,0);
-    targetDate.setHours(0,0,0,0);
-
-    return srcDate.getTime() === targetDate.getTime();
+    return srcDate.toString() === targetDate.toString();
   },
 
   isToday: function (date) {
@@ -88,19 +95,36 @@ module.exports = {
   // ]
   buildWeeks: function (date) {
     var totalDays = this.daysInMonth(date);
+    var prevMonthDate = this.prevMonthDate(date)
+    var nextMonthDate = this.nextMonthDate(date)
+
+    var daysPrevMonth = this.daysInMonth(prevMonthDate)
+    var daysNextMonth = this.daysInMonth(nextMonthDate)
 
     // 0 = Sun, 1 = Mon, 2, Tues, ...
-    var firstDay = this.beginningOfMonth(date).getDay();
+    var firstDayOffset = this.beginningOfMonth(date).getDay();
+
+    var toDates = function (days, _date) {
+      return days.map(function (d) {
+        return new Date(new Date(_date).setDate(d));
+      });
+    };
 
     // [1, 2, 3, 4, 5, ... 31]
-    var days = _(totalDays).times()
-      .map(function (i) { return i + 1; })
-      .value();
+    var days = toDates(range(1, totalDays), date);
 
-    // ['', '', 1, 2, 3, 4, 5, ... 31]
-    _.times(firstDay, function () {
-      days.unshift('');
-    });
+    var remainingDays = 7 - ((totalDays + firstDayOffset) % 7);
+    remainingDays = (totalDays + firstDayOffset) / 7 < 5
+      ? remainingDays + 7
+      : remainingDays;
+
+      // [29, 30, 31, 1, 2, 3, 4]
+    var nextDays = _.take(range(1, daysNextMonth), remainingDays);
+    days = days.concat(toDates(nextDays, nextMonthDate));
+
+    // [29, 30, 1, 2, 3, 4, 5, ... 31]
+    var prevDays = _.takeRight(range(1, daysPrevMonth), firstDayOffset)
+    days = toDates(prevDays, prevMonthDate).concat(days)
 
     return _.chunk(days, 7);
   }

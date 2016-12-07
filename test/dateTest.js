@@ -57,16 +57,24 @@ describe('date', function () {
       [ 8, 9, 10, 11, 12, 13, 14 ],
       [ 15, 16, 17, 18, 19, 20, 21 ],
       [ 22, 23, 24, 25, 26, 27, 28 ],
-      [ 29, 30, 31 ],
+      [ 29, 30, 31, 1, 2, 3, 4 ],
+      [ 5, 6, 7, 8, 9, 10, 11 ],
     ];
     var aprilWeeks = [
-      [ '', '', '', 1, 2, 3, 4 ],
+      [ 29, 30, 31, 1, 2, 3, 4 ],
       [ 5, 6, 7, 8, 9, 10, 11 ],
       [ 12, 13, 14, 15, 16, 17, 18 ],
       [ 19, 20, 21, 22, 23, 24, 25 ],
-      [ 26, 27, 28, 29, 30 ]
+      [ 26, 27, 28, 29, 30, 1, 2 ],
+      [ 3, 4, 5, 6, 7, 8, 9 ],
     ];
-    expect(date.buildWeeks(new Date('March 1 2015')), 'to equal', marchWeeks);
-    expect(date.buildWeeks(TODAY), 'to equal', aprilWeeks);
+
+    var march = date.buildWeeks(new Date('March 1 2015'))
+    expect(march[0][0], 'to equal', new Date('March 1 2015'));
+    expect(march[5][6], 'to equal', new Date('April 11 2015'));
+
+    var april = date.buildWeeks(new Date('April 1 2015'))
+    expect(april[0][0], 'to equal', new Date('March 29 2015'));
+    expect(april[5][6], 'to equal', new Date('May 9 2015'));
   });
 });

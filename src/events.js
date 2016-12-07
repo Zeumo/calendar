@@ -11,13 +11,13 @@ module.exports = {
   },
 
   _delegate: function () {
-    _.each(this.events, function (handler, k) {
+    _.forEach(this.events, function (handler, k) {
       var parts = k.split(' ');
       var selector = parts[1],
           eventType = parts[0];
 
       $(this.el).on(eventType, selector, this[handler].bind(this));
-    }, this);
+    }.bind(this));
   },
 
   handleNextMonth: function (e) {

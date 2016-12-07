@@ -2,7 +2,7 @@ var _ = require('lodash');
 var date = require('./date');
 var dom = require('./dom');
 
-var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var _state = {};
 
 var eventsOnDate = function (_date) {
@@ -17,7 +17,7 @@ var eventsOnDate = function (_date) {
 
 module.exports = {
   dayNames: function () {
-    return dom.tr(DAYS.map(dom.th).join(''));
+    return dom.tr(DAY_NAMES.map(dom.th).join(''));
   },
 
   events: function (_date) {
@@ -30,26 +30,24 @@ module.exports = {
     return _.map(eventsOnDate(_date), eventTmpl).join('');
   },
 
-  day: function (day) {
+  day: function (_date) {
     var dayTmpl = _.template(require('./templates/day.html'));
-    var isDay = day && typeof day === 'number';
-    var newDate = new Date(_state.date);
-    newDate.setDate(day);
 
     return dayTmpl({
-      day: day,
-      date: newDate,
-      active: isDay && date.isToday(newDate) ? 'active' : '',
-      events: this.events(newDate)
+      day: _date.getDate(),
+      date: _date,
+      active: date.isToday(_date) ? 'active' : '',
+      trailing: date.isAdjacentMonth(_state.date, _date),
+      events: this.events(_date)
     });
   },
 
   week: function (days) {
-    return dom.tr(_.map(days, this.day, this).join(''));
+    return dom.tr(days.map(this.day.bind(this)).join(''));
   },
 
   month: function (weeks) {
-    return _.map(weeks, this.week, this).join('');
+    return weeks.map(this.week.bind(this)).join('');
   },
 
   template: function (state) {

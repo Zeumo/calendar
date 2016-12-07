@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --inline --hot",
     "build": "webpack -p",
     "test": "mocha",
-    "karma": "karma start"
+    "karma": "karma start",
+    "preversion": "npm run build && git commit dist -m \"Dist\""
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +25,7 @@
     "karma-mocha": "^0.2.1",
     "karma-safari-launcher": "^0.1.1",
     "karma-webpack": "^1.5.0",
-    "lodash": "^3.6.0",
+    "lodash": "^3.10.0",
     "mocha": "^2.3.4",
     "mocha-jsdom": "^1.0.0",
     "node-sass": "^3.0.0-beta.4",
