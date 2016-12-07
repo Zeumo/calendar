@@ -12,6 +12,14 @@ describe('date', function () {
     expect(date.endOfMonth(TODAY), 'to equal', new Date('April 30 2015'))
   })
 
+  it('returns beginning of day', () => {
+    expect(date.beginningOfDay(TODAY), 'to equal', 1428296400000)
+  })
+
+  it('returns end of day', () => {
+    expect(date.endOfDay(TODAY), 'to equal', 1428382799999)
+  })
+
   it('returns days in a month', function () {
     var normalFebuary = new Date('Feb 1 2015')
     var leapYearFebuary = new Date('Feb 1 2016')

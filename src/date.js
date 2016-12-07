@@ -20,6 +20,14 @@ export default {
     return LONG_MONTH_NAMES[date.getMonth()]
   },
 
+  beginningOfDay(date) {
+    return new Date(date).setHours(0, 0, 0, 0)
+  },
+
+  endOfDay(date) {
+    return new Date(date).setHours(23, 59, 59, 999)
+  },
+
   simpleTime(date) {
     let str = []
     let hr = date.getHours()
@@ -37,9 +45,9 @@ export default {
   },
 
   isBetween(srcDate, startDate, endDate) {
-    let _srcDate   = new Date(srcDate).setHours(0,0,0,0)
-    let _startDate = new Date(startDate).setHours(0,0,0,0)
-    let _endDate   = new Date(endDate).setHours(0,0,0,0)
+    let _srcDate   = this.beginningOfDay(srcDate)
+    let _startDate = this.beginningOfDay(startDate)
+    let _endDate   = this.beginningOfDay(endDate)
 
     return _srcDate >= _startDate && srcDate <= _endDate
   },
