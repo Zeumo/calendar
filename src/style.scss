@@ -1,6 +1,13 @@
 #zeumo-calender {
-  padding: 20px;
   height: 100%;
+
+  .container {
+    height: calc(100% - (46px + 36px));
+  }
+
+  .weeks {
+    height: 100%;
+  }
 
   .title {
     font-size: 20px;
@@ -35,38 +42,61 @@
   table {
     width: 100%;
     height: 100%;
-    height: calc(100% - 46px);
+    table-layout: fixed;
     border-spacing: 0;
   }
 
-  thead th {
-    border-bottom: 1px solid #eee;
-    padding: 8px 0;
+  .week {
+    height: 16.667%;
+    position: relative;
+  }
+
+  .overlay {
+    thead {
+      text-align: right;
+
+      th {
+        padding: 8px 10px;
+        font-weight: normal;
+
+        &.active {
+          color: rebeccapurple;
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+    }
+
+  }
+
+  .day-names {
+    th {
+      padding: 8px 0;
+    }
+  }
+
+  .week-skeleton {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    td {
+      border-style: solid;
+      border-width: 1px;
+      border-color: #eee;
+      padding: 0;
+    }
+
+    .active {
+      background: #f6f2fb;
+    }
   }
 
   td {
-    width: 14.28%;
-
-    &.active {
-      background: #f6f2fb;
-      color: rebeccapurple;
-
-      .numeral {
-        font-weight: bold;
-        font-size: 18px;
-      }
-    }
-  }
-
-  tbody tr {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-  }
-
-  tbody td:last-child {
-    .day {
-      border-right: 1px solid #eee;
-    }
+    vertical-align: top;
   }
 
   .day {
@@ -80,20 +110,12 @@
     color: #ccc;
   }
 
-  .day-events {
-    clear: both;
-    font-size: 13px;
-  }
-
   .event {
-    width: 100%;
-    max-height: 34px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .numeral {
-    float: right;
-    font-weight: 300;
+    margin: 2px 3px;
+    background: rebeccapurple;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 13px;
   }
 }

@@ -17,6 +17,7 @@
       color: rebeccapurple;
     }
     #calendar {
+      padding: 20px;
       height: 100vh;
     }
   </style>
@@ -35,7 +36,16 @@
         console.log(date);
       }
     });
+    var ONE_DAY = 1000 * 60 * 60 * 24
+
     calendar.render(null, [
+      {"title":"Test event 1","start_date":new Date(),"end_date":new Date(Date.now() + ONE_DAY * 2)},
+      {"title":"Test event 2","start_date":new Date(),"end_date":new Date(Date.now() + ONE_DAY * 4)},
+
+      {"title":"Test event 3","start_date":new Date(Date.now() + ONE_DAY * 2),"end_date":new Date(Date.now() + ONE_DAY * 5)},
+
+      {"title":"Test event 4","start_date":new Date(Date.now() + ONE_DAY * 3),"end_date":new Date(Date.now() + ONE_DAY * 6)},
+
       {"title":"Physicians Thank You Lunch","start_date":"2014-02-28T11:00:00.000-06:00","end_date":"2014-02-28T13:00:00.000-06:00"},
       {"title":"Amplify!","start_date":"2015-10-27T08:00:00.000-05:00","end_date":"2015-10-29T18:00:00.000-05:00"},
       {"title":"Physician Appreciation Lunch","start_date":"2015-05-04T12:00:00.000-05:00","end_date":"2015-05-04T14:00:00.000-05:00"},

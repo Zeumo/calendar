@@ -1,6 +1,8 @@
 var _ = require('lodash')
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
+var ONE_DAY = 1000 * 60 * 60 * 24;
+
 var range = function (start, end) {
   return _.range(start, end + start)
 }
@@ -46,6 +48,18 @@ module.exports = {
     return _srcDate >= _startDate && srcDate <= _endDate
   },
 
+  isAfter: function (startDate, endDate) {
+    return +(new Date(startDate)) >= +(new Date(endDate));
+  },
+
+  isBefore: function (startDate, endDate) {
+    return +(new Date(startDate)) <= +(new Date(endDate));
+  },
+
+  daysBetween: function (startDate, endDate) {
+    return Math.round(Math.abs((new Date(startDate).getTime() - new Date(endDate).getTime()) / ONE_DAY));
+  },
+
   isAdjacentMonth: function (srcDate, trailingDate) {
     srcDate = srcDate || new Date()
     var srcMonth = srcDate.getMonth()
@@ -55,7 +69,7 @@ module.exports = {
   },
 
   isSameDay: function (srcDate, targetDate) {
-    return srcDate.toString() === targetDate.toString()
+    return srcDate.toDateString() === targetDate.toDateString()
   },
 
   isToday: function (date) {

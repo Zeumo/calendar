@@ -1,0 +1,47 @@
+<div class="week">
+  <div class="week-skeleton">
+    <table>
+      <tbody>
+        <tr>
+          <% days.forEach(function(date) { %>
+            <td class="<%= date.active ? 'active' : '' %>" data-date="<%= date.date %>"></td>
+          <% }) %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="overlay">
+    <table>
+      <thead>
+        <tr>
+          <% days.forEach(function(date) { %>
+            <th class="
+              <%= date.trailing ? 'day-trailing' : '' %>
+              <%= date.active ? 'active' : '' %>
+              ">
+              <%= date.day %>
+            </th>
+          <% }) %>
+        </tr>
+      </thead>
+      <tbody>
+        <% rows.forEach(function(row, i) { %>
+          <tr>
+            <% row.forEach(function(el) { %>
+              <% if (el.rowspan) { %>
+                <td rowspan="<%= el.rowspan %>" colspan="<%= el.colspan %>"></td>
+              <% } else { %>
+                <td colspan="<%= el.props.colspan %>">
+                  <div class="event">
+                    <%= el.title %>
+                  </div>
+                </td>
+              <% } %>
+            <% }) %>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
