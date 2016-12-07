@@ -1,13 +1,13 @@
 import { filter, sortBy, template } from 'lodash'
-import date from './date'
+import dateUtils from './date'
 import dom from './dom'
 import { SHORT_DAY_NAMES } from './locale'
 
-var _state = {}
+let _state = {}
 
-const eventsOnDate = (_date) => {
+const eventsOnDate = (date) => {
   let events = filter(_state.events, (event) => {
-    if (date.isBetween(_date, event.start_date, event.end_date)) {
+    if (dateUtils.isBetween(date, event.start_date, event.end_date)) {
       return event
     }
   }, [])
@@ -20,25 +20,25 @@ export default {
     return dom.tr(SHORT_DAY_NAMES.map(dom.th).join(''))
   },
 
-  events(_date) {
-    var eventTmpl = template(require('./templates/event.html'), {
+  events(date) {
+    let _template = template(require('./templates/event.html'), {
       'imports': {
-        'date': date,
-        'today': _date
+        date: dateUtils,
+        today: date
       }
     })
-    return eventsOnDate(_date).map(eventTmpl).join('')
+    return eventsOnDate(date).map(_template).join('')
   },
 
-  day(_date) {
-    var dayTmpl = template(require('./templates/day.html'))
+  day(date) {
+    let tmpl = template(require('./templates/day.html'))
 
-    return dayTmpl({
-      day: _date.getDate(),
-      date: _date,
-      active: date.isToday(_date) ? 'active' : '',
-      trailing: date.isAdjacentMonth(_state.date, _date),
-      events: this.events(_date)
+    return tmpl({
+      day: date.getDate(),
+      date: date,
+      active: dateUtils.isToday(date) ? 'active' : '',
+      trailing: dateUtils.isAdjacentMonth(_state.date, date),
+      events: this.events(date)
     })
   },
 
@@ -52,13 +52,13 @@ export default {
 
   template(state) {
     _state = state
-    var calendarTmpl = template(require('./templates/calendar.html'))
+    let calendarTmpl = template(require('./templates/calendar.html'))
 
     return calendarTmpl({
-      monthName: date.getMonthName(_state.date),
+      monthName: dateUtils.getMonthName(_state.date),
       year: _state.date.getFullYear(),
       header: this.dayNames(),
-      weeks: this.month(date.buildWeeks(_state.date))
+      weeks: this.month(dateUtils.buildWeeks(_state.date))
     })
   }
 }
