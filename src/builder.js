@@ -1,4 +1,3 @@
-import { filter, sortBy, template } from 'lodash'
 import dateUtils from './date'
 import dom from './dom'
 import { SHORT_DAY_NAMES } from './locale'
@@ -6,34 +5,28 @@ import { SHORT_DAY_NAMES } from './locale'
 let _state = {}
 
 const eventsOnDate = (date) => {
-  let events = filter(_state.events, (event) => {
-    if (dateUtils.isBetween(date, event.start_date, event.end_date)) {
-      return event
-    }
+  return (_state.events || []).filter((event) => {
+    return dateUtils.isBetween(date, event.start_date, event.end_date)
   }, [])
-
-  return sortBy(events, 'start_date')
+    .sort((a, b) => a.start_date > b.start_date)
 }
 
 export default {
   dayNames() {
-    return dom.tr(SHORT_DAY_NAMES.map(dom.th).join(''))
+    let node = require('./templates/dayNames.jsx')
+    return node(SHORT_DAY_NAMES)
   },
 
   events(date) {
-    let _template = template(require('./templates/event.html'), {
-      'imports': {
-        date: dateUtils,
-        today: date
-      }
-    })
-    return eventsOnDate(date).map(_template).join('')
+    let node = require('./templates/event.jsx')
+
+    return eventsOnDate(date)
+      .map((event) => node(Object.assign(event, { today: date })))
   },
 
   day(date) {
-    let tmpl = template(require('./templates/day.html'))
-
-    return tmpl({
+    let node = require('./templates/day.jsx')
+    return node({
       day: date.getDate(),
       date: date,
       active: dateUtils.isToday(date) ? 'active' : '',
@@ -43,18 +36,19 @@ export default {
   },
 
   week(days) {
-    return dom.tr(days.map(this.day.bind(this)).join(''))
+    let node = require('./templates/week.jsx')
+    return node(days.map(this.day.bind(this)))
   },
 
   month(weeks) {
-    return weeks.map(this.week.bind(this)).join('')
+    return weeks.map(this.week.bind(this))
   },
 
   template(state) {
     _state = state
-    let calendarTmpl = template(require('./templates/calendar.html'))
+    let node = require('./templates/calendar.jsx')
 
-    return calendarTmpl({
+    return node({
       monthName: dateUtils.getMonthName(_state.date),
       year: _state.date.getFullYear(),
       header: this.dayNames(),

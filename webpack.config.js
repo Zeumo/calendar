@@ -12,18 +12,25 @@ module.exports = {
     'jquery': '$'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx$/,
+        loader: 'nativejsx-loader',
+        excludes: /node_modules/,
+        query: {
+          variablePrefix: '_',
+          declarationType: 'let'
+        }
+      }
+    ],
     loaders: [
       {
-        test: /\.js/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
           presets: ['es2015']
         }
-      },
-      {
-        test: /\.html$/,
-        loader: path.join(__dirname, 'loaders/jst-loader')
       },
       {
         test: /\.scss$/,

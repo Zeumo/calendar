@@ -17,8 +17,11 @@ export default function (newDate, calendarEvents) {
   this.currentDate = newDate || this.currentDate
   this.calendarEvents = parseDates(calendarEvents || this.calendarEvents)
 
-  this.el.innerHTML = builder.template({
+  let node = builder.template({
     date: this.currentDate,
     events: this.calendarEvents
   })
+
+  this.el.innerHTML = ''
+  this.el.appendChild(node)
 }
