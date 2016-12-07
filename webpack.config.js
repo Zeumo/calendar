@@ -1,15 +1,15 @@
-var path = require('path');
+var path = require('path')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: './dist/calendar.js',
-     libraryTarget: "var",
-     library: "Calendar"
+    libraryTarget: 'var',
+    library: 'Calendar'
   },
   externals: {
-    "lodash": "_",
-    "jquery": "$"
+    'lodash': '_',
+    'jquery': '$'
   },
   module: {
     loaders: [
@@ -19,8 +19,8 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ['style', 'css', 'sass']
       }
     ]
   }
-};
+}

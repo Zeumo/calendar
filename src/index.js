@@ -1,23 +1,23 @@
-var _ = require('lodash');
-var events = require('./events');
-var render = require('./render');
+var _ = require('lodash')
+var events = require('./events')
+var render = require('./render')
 require('./style.scss')
 
 var Calendar = function (el, options) {
-  this.el = el;
+  this.el = el
 
   this.options = _.extend({
     onDayClick: _.noop
-  }, options);
+  }, options)
 
-  this.currentDate = new Date();
-  this.calendarEvents = {};
+  this.currentDate = new Date()
+  this.calendarEvents = {}
 
-  events._delegate.call(this);
-};
+  events._delegate.call(this)
+}
 
 _.extend(Calendar.prototype, events, {
   render: render
-});
+})
 
-module.exports = Calendar;
+module.exports = Calendar

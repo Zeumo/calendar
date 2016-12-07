@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Thu Apr 02 2015 10:57:08 GMT-0500 (CDT)
-var path = require('path');
+var path = require('path')
 
 module.exports = function(config) {
   config.set({
@@ -84,5 +84,5 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false
-  });
-};
+  })
+}
