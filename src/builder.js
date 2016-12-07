@@ -1,8 +1,8 @@
 import { filter, sortBy, template } from 'lodash'
 import date from './date'
 import dom from './dom'
+import { SHORT_DAY_NAMES } from './locale'
 
-var DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 var _state = {}
 
 const eventsOnDate = function (_date) {
@@ -17,7 +17,7 @@ const eventsOnDate = function (_date) {
 
 export default {
   dayNames: function () {
-    return dom.tr(DAY_NAMES.map(dom.th).join(''))
+    return dom.tr(SHORT_DAY_NAMES.map(dom.th).join(''))
   },
 
   events: function (_date) {

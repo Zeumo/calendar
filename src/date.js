@@ -1,5 +1,5 @@
-var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 import { take, takeRight, chunk, range } from 'lodash'
+import { LONG_MONTH_NAMES } from './locale'
 
 const inclusiveRange = function (start, end) {
   return range(start, end + 1)
@@ -19,7 +19,7 @@ export default {
   },
 
   getMonthName: function (date) {
-    return MONTHS[date.getMonth()]
+    return LONG_MONTH_NAMES[date.getMonth()]
   },
 
   simpleTime: function (date) {
