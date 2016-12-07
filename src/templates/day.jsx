@@ -1,10 +1,10 @@
-module.exports = (props) => {
-  let classNames = ['day', props.trailing && 'day-trailing'].filter(f => f).join(' ')
+let classNames = require('../classNames').default
 
+module.exports = (props) => {
   return (
     <td className={props.active}>
       {props.day && (
-        <div className={classNames} data-date={props.date}>
+        <div className={classNames('day', { 'day-trailing': props.trailing })} data-date={props.date}>
           <span className="numeral">{props.day}</span>
           <div className="day-events">
             {props.events}

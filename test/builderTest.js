@@ -16,14 +16,6 @@ describe('builder', function () {
     expect(node.querySelectorAll('th').length, 'to equal', 7)
   })
 
-  it('returns a day', function () {
-    var day = builder.day(_state.date).outerHTML
-
-    expect(day, 'to match', /day/)
-    expect(day, 'to match', /class="numeral/)
-    expect(day, 'to match', /6/)
-  })
-
   it('returns a week', function () {
     let node = builder.week([1,2,3,4,5,6,7].map(function (day) {
       return new Date(2016, 11, day)

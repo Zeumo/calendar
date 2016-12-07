@@ -9,10 +9,16 @@ module.exports = (props) => {
           <a href="#" className="next">&rarr;</a>
         </div>
       </div>
-      <table>
-        <thead>{props.header}</thead>
-        <tbody>{props.weeks}</tbody>
-      </table>
+      <div class="container">
+        <div class="day-names">
+          <table>
+            <thead>{props.header}</thead>
+          </table>
+        </div>
+        <div class="weeks">
+          {props.weeks}
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,55 @@
 #zeumo-calender {
-  padding: 20px;
   height: 100%;
+
+  table, td, th {
+    border-collapse: collapse;
+    padding: 0;
+  }
+
+  table {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  .container {
+    height: calc(100% - (46px + 36px));
+  }
+
+  .weeks {
+    height: 100%;
+  }
+
+  .week {
+    height: 16.667%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .week-skeleton {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    td {
+      border-style: solid;
+      border-width: 1px;
+      border-color: #eee;
+      padding: 0;
+    }
+
+    .active {
+      background: #f6f2fb;
+    }
+  }
 
   .title {
     font-size: 20px;
@@ -27,73 +76,39 @@
     }
   }
 
-  table, td, th {
-    border-collapse: collapse;
-    padding: 0;
-  }
+  .overlay {
+    thead {
+      text-align: right;
 
-  table {
-    width: 100%;
-    height: 100%;
-    height: calc(100% - 46px);
-    border-spacing: 0;
-  }
+      th {
+        padding: 8px 10px;
+        font-weight: normal;
 
-  thead th {
-    border-bottom: 1px solid #eee;
-    padding: 8px 0;
-  }
-
-  td {
-    width: 14.28%;
-
-    &.active {
-      background: #f6f2fb;
-      color: rebeccapurple;
-
-      .numeral {
-        font-weight: bold;
-        font-size: 18px;
+        &.active {
+          color: rebeccapurple;
+          font-weight: bold;
+          font-size: 18px;
+        }
       }
     }
   }
 
-  tbody tr {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-  }
-
-  tbody td:last-child {
-    .day {
-      border-right: 1px solid #eee;
+  .day-names {
+    th {
+      padding: 8px 0;
     }
-  }
-
-  .day {
-    height: 100%;
-    border-left: 1px solid #eee;
-    padding: 5px;
-    box-sizing: content-box;
   }
 
   .day-trailing {
     color: #ccc;
   }
 
-  .day-events {
-    clear: both;
-    font-size: 13px;
-  }
-
   .event {
-    width: 100%;
-    max-height: 34px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .numeral {
-    float: right;
-    font-weight: 300;
+    margin: 2px 3px;
+    background: rebeccapurple;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 13px;
   }
 }

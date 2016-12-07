@@ -24,20 +24,17 @@ export default {
       .map((event) => node(Object.assign(event, { today: date })))
   },
 
-  day(date) {
-    let node = require('./templates/day.jsx')
-    return node({
-      day: date.getDate(),
-      date: date,
-      active: dateUtils.isToday(date) ? 'active' : '',
-      trailing: dateUtils.isAdjacentMonth(_state.date, date),
-      events: this.events(date)
-    })
-  },
-
   week(days) {
     let node = require('./templates/week.jsx')
-    return node(days.map(this.day.bind(this)))
+    return node(days.map((date) => {
+      return {
+        day: date.getDate(),
+        date: date,
+        active: dateUtils.isToday(date) ? 'active' : '',
+        trailing: !dateUtils.isSameMonth(_state.date, date),
+        events: this.events(date)
+      }
+    }))
   },
 
   month(weeks) {

@@ -52,12 +52,11 @@ export default {
     return _srcDate >= _startDate && srcDate <= _endDate
   },
 
-  isAdjacentMonth(srcDate, trailingDate) {
-    srcDate = srcDate || new Date()
+  isSameMonth(srcDate = new Date(), targetDate) {
     let srcMonth = srcDate.getMonth()
-    let trailingMonth = trailingDate.getMonth()
+    let targetMonth = targetDate.getMonth()
 
-    return trailingMonth !== srcMonth
+    return targetMonth === srcMonth
   },
 
   isSameDay(srcDate, targetDate) {
