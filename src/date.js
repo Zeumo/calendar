@@ -53,7 +53,7 @@ export default {
   },
 
   isSameDay(srcDate, targetDate) {
-    return srcDate.toString() === targetDate.toString()
+    return srcDate.toDateString() === targetDate.toDateString()
   },
 
   isToday(date) {
