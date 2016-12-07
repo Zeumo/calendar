@@ -1,18 +1,18 @@
-import _ from 'lodash'
+import { filter, sortBy, template } from 'lodash'
 import date from './date'
 import dom from './dom'
 
 var DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 var _state = {}
 
-var eventsOnDate = function (_date) {
-  var events = _.filter(_state.events, function (event) {
+const eventsOnDate = function (_date) {
+  let events = filter(_state.events, function (event) {
     if (date.isBetween(_date, event.start_date, event.end_date)) {
       return event
     }
   }, [])
 
-  return _.sortBy(events, 'start_date')
+  return sortBy(events, 'start_date')
 }
 
 export default {
@@ -21,17 +21,17 @@ export default {
   },
 
   events: function (_date) {
-    var eventTmpl = _.template(require('./templates/event.html'), {
+    var eventTmpl = template(require('./templates/event.html'), {
       'imports': {
         'date': date,
         'today': _date
       }
     })
-    return _.map(eventsOnDate(_date), eventTmpl).join('')
+    return eventsOnDate(_date).map(eventTmpl).join('')
   },
 
   day: function (_date) {
-    var dayTmpl = _.template(require('./templates/day.html'))
+    var dayTmpl = template(require('./templates/day.html'))
 
     return dayTmpl({
       day: _date.getDate(),
@@ -52,7 +52,7 @@ export default {
 
   template: function (state) {
     _state = state
-    var calendarTmpl = _.template(require('./templates/calendar.html'))
+    var calendarTmpl = template(require('./templates/calendar.html'))
 
     return calendarTmpl({
       monthName: date.getMonthName(_state.date),

@@ -1,8 +1,8 @@
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-import _ from 'lodash'
+import { take, takeRight, chunk, range } from 'lodash'
 
-var range = function (start, end) {
-  return _.range(start, end + start)
+const inclusiveRange = function (start, end) {
+  return range(start, end + 1)
 }
 
 export default {
@@ -111,7 +111,7 @@ export default {
     }
 
     // [1, 2, 3, 4, 5, ... 31]
-    var days = toDates(range(1, totalDays), date)
+    let days = toDates(inclusiveRange(1, totalDays), date)
 
     var remainingDays = 7 - ((totalDays + firstDayOffset) % 7)
     remainingDays = (totalDays + firstDayOffset) / 7 < 5
@@ -119,13 +119,13 @@ export default {
       : remainingDays
 
       // [29, 30, 31, 1, 2, 3, 4]
-    var nextDays = _.take(range(1, daysNextMonth), remainingDays)
+    let nextDays = take(inclusiveRange(1, daysNextMonth), remainingDays)
     days = days.concat(toDates(nextDays, nextMonthDate))
 
     // [29, 30, 1, 2, 3, 4, 5, ... 31]
-    var prevDays = _.takeRight(range(1, daysPrevMonth), firstDayOffset)
+    let prevDays = takeRight(inclusiveRange(1, daysPrevMonth), firstDayOffset)
     days = toDates(prevDays, prevMonthDate).concat(days)
 
-    return _.chunk(days, 7)
+    return chunk(days, 7)
   }
 }
