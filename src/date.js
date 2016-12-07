@@ -23,12 +23,12 @@ export default {
   },
 
   simpleTime: function (date) {
-    var str = []
-    var hr = date.getHours()
-    var min = date.getMinutes()
+    let str = []
+    let hr = date.getHours()
+    let min = date.getMinutes()
     min = min && min < 10 ? '0' + min : min
 
-    var meridian = hr < 12 ? 'a' : 'p'
+    let meridian = hr < 12 ? 'a' : 'p'
     hr = hr % 12 || 12
 
     str.push(hr)
@@ -39,17 +39,17 @@ export default {
   },
 
   isBetween: function (srcDate, startDate, endDate) {
-    var _srcDate   = new Date(srcDate).setHours(0,0,0,0)
-    var _startDate = new Date(startDate).setHours(0,0,0,0)
-    var _endDate   = new Date(endDate).setHours(0,0,0,0)
+    let _srcDate   = new Date(srcDate).setHours(0,0,0,0)
+    let _startDate = new Date(startDate).setHours(0,0,0,0)
+    let _endDate   = new Date(endDate).setHours(0,0,0,0)
 
     return _srcDate >= _startDate && srcDate <= _endDate
   },
 
   isAdjacentMonth: function (srcDate, trailingDate) {
     srcDate = srcDate || new Date()
-    var srcMonth = srcDate.getMonth()
-    var trailingMonth = trailingDate.getMonth()
+    let srcMonth = srcDate.getMonth()
+    let trailingMonth = trailingDate.getMonth()
 
     return trailingMonth !== srcMonth
   },
@@ -63,7 +63,7 @@ export default {
   },
 
   nextMonthDate: function (currentDate) {
-    var date, currentMonth = currentDate.getMonth()
+    let date, currentMonth = currentDate.getMonth()
 
     if (currentMonth === 11) {
       date = new Date(currentDate.getFullYear() + 1, 0, 1)
@@ -75,7 +75,7 @@ export default {
   },
 
   prevMonthDate: function (currentDate) {
-    var date, currentMonth = currentDate.getMonth()
+    let date, currentMonth = currentDate.getMonth()
 
     if (currentMonth === 0) {
       date = new Date(currentDate.getFullYear() - 1, 11, 1)
@@ -94,17 +94,17 @@ export default {
   //   [29, 30, 31],
   // ]
   buildWeeks: function (date) {
-    var totalDays = this.daysInMonth(date)
-    var prevMonthDate = this.prevMonthDate(date)
-    var nextMonthDate = this.nextMonthDate(date)
+    let totalDays = this.daysInMonth(date)
+    let prevMonthDate = this.prevMonthDate(date)
+    let nextMonthDate = this.nextMonthDate(date)
 
-    var daysPrevMonth = this.daysInMonth(prevMonthDate)
-    var daysNextMonth = this.daysInMonth(nextMonthDate)
+    let daysPrevMonth = this.daysInMonth(prevMonthDate)
+    let daysNextMonth = this.daysInMonth(nextMonthDate)
 
     // 0 = Sun, 1 = Mon, 2, Tues, ...
-    var firstDayOffset = this.beginningOfMonth(date).getDay()
+    let firstDayOffset = this.beginningOfMonth(date).getDay()
 
-    var toDates = function (days, _date) {
+    const toDates = function (days, _date) {
       return days.map(function (d) {
         return new Date(new Date(_date).setDate(d))
       })
@@ -113,7 +113,7 @@ export default {
     // [1, 2, 3, 4, 5, ... 31]
     let days = toDates(inclusiveRange(1, totalDays), date)
 
-    var remainingDays = 7 - ((totalDays + firstDayOffset) % 7)
+    let remainingDays = 7 - ((totalDays + firstDayOffset) % 7)
     remainingDays = (totalDays + firstDayOffset) / 7 < 5
       ? remainingDays + 7
       : remainingDays
