@@ -5,11 +5,11 @@ let eventsRow = require('./eventsRow.jsx')
 
 module.exports = ({days, events}) => {
   return (
-    <div className="week">
+    <div className="z-week">
       {weekSkeleton(days)}
 
-      <div className="overlay">
-        <table className="events">
+      <div className="z-overlay">
+        <table className="z-events">
           <thead>
             <tr>
               {days.map(dayName)}

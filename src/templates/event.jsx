@@ -6,8 +6,8 @@ module.exports = (event) => {
   }
 
   let time = event.showStartTime ? [event.startTime, ' '] : null
-  let className = classNames('event', {
-    [`event-continues-${event.continues}`]: event.continues,
+  let className = classNames('z-event', {
+    [`z-event-continues-${event.continues}`]: event.continues,
   })
 
   return (

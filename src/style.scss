@@ -1,4 +1,4 @@
-#zeumo-calender {
+#z-calender {
   height: 100%;
 
   table, td, th {
@@ -17,22 +17,22 @@
     vertical-align: top;
   }
 
-  .calendar-container {
+  .z-container {
     height: 100%;
     height: calc(100% - 46px);
   }
 
-  .weeks {
+  .z-weeks {
     height: 100%;
     height: calc(100% - 36px);
   }
 
-  .week {
+  .z-week {
     height: 16.667%;
     position: relative;
   }
 
-  .week-skeleton {
+  .z-week-skeleton {
     height: 100%;
     position: absolute;
     top: 0;
@@ -47,22 +47,22 @@
       padding: 0;
     }
 
-    .active {
+    .z-active {
       background: #f6f2fb;
     }
   }
 
-  .title {
+  .z-title {
     font-size: 20px;
     margin-right: 10px;
   }
 
-  .header {
+  .z-header {
     font-weight: bold;
     margin: 0 0 20px 0;
   }
 
-  .actions {
+  .z-actions {
     float: right;
 
     a {
@@ -77,7 +77,7 @@
     }
   }
 
-  .overlay {
+  .z-overlay {
     height: 100%;
     overflow: hidden;
 
@@ -96,22 +96,22 @@
     }
   }
 
-  .day-names {
+  .z-day-names {
     th {
       text-align: center;
       padding: 8px 0;
     }
   }
 
-  .day-trailing {
+  .z-day-trailing {
     color: #ccc;
   }
 
-  table.events {
+  table.z-events {
     height: auto;
   }
 
-  .event {
+  .z-event {
     margin: 2px;
     background: rebeccapurple;
     color: #fff;
@@ -123,16 +123,16 @@
     overflow: hidden;
   }
 
-  .event-continues-before-after {
+  .z-event-continues-before-after {
     border-radius: 1em;
   }
 
-  .event-continues-after {
+  .z-event-continues-after {
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
   }
 
-  .event-continues-before {
+  .z-event-continues-before {
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
   }
