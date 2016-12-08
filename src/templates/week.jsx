@@ -1,6 +1,6 @@
 let classNames = require('../classNames').default
 
-module.exports = (days) => {
+module.exports = ({days, events}) => {
   return (
     <div className="week">
       <div className="week-skeleton">
@@ -18,7 +18,7 @@ module.exports = (days) => {
       </div>
 
       <div className="overlay">
-        <table>
+        <table className="events">
           <thead>
             <tr>
               {days.map((date) => {
@@ -31,17 +31,31 @@ module.exports = (days) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {days.map((date) => {
-                return (
-                  <td className={classNames({ 'active': date.active})} data-date={date.date}>
-                    <div className="events">
-                      {date.events}
-                    </div>
-                  </td>
-                )
-              })}
-            </tr>
+            {events.map((row, rowIndex) => {
+              return (
+                <tr>
+                  {row.map((el) => {
+                    if (el.spacer) return <td colSpan={el.colSpan} />
+
+                    let time = /right/.test(el.continues) ? `${el.time} ` : ''
+
+                    return (
+                      <td colSpan={el.distance} title={el.title}>
+                        <div className={classNames('event', {
+                          [`event-continues-${el.continues}`]: el.continues,
+                        })}>
+                          {el.url ? (
+                            <a href={el.url}>{time}{el.title}</a>
+                          ) : (
+                            time + el.title
+                          )}
+                        </div>
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>

@@ -107,16 +107,33 @@
     color: #ccc;
   }
 
+  table.events {
+    height: auto;
+  }
+
   .event {
-    margin: 2px 3px;
+    margin: 2px;
     background: rebeccapurple;
     color: #fff;
     padding: 2px 5px;
-    border-radius: 3px;
     font-size: 13px;
     -webkit-line-clamp: 1;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  .event-continues-before-after {
+    border-radius: 1em;
+  }
+
+  .event-continues-after {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+
+  .event-continues-before {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
   }
 }
