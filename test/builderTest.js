@@ -2,7 +2,7 @@ import expect from 'unexpected'
 import jsdom from 'mocha-jsdom'
 
 import * as date from '../src/date'
-import builder from '../src/builder'
+import * as builder from '../src/builder'
 
 var _state = {
   date: new Date('April 6, 2015')
