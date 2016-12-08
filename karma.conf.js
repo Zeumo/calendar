@@ -1,17 +1,10 @@
 // Karma configuration
 // Generated on Thu Apr 02 2015 10:57:08 GMT-0500 (CDT)
 var path = require('path')
+var webpack = require('./webpack.config')
 
 module.exports = function(config) {
   config.set({
-
-    plugins: [
-      'karma-mocha',
-      'karma-webpack',
-      'karma-chrome-launcher',
-      'karma-safari-launcher',
-      'karma-firefox-launcher',
-    ],
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -41,14 +34,7 @@ module.exports = function(config) {
     },
 
     webpack: {
-      module: {
-        loaders: [
-          {
-            test: /\.html$/,
-            loader: path.join(__dirname, 'loaders/jst-loader')
-          }
-        ]
-      }
+      module: webpack.module
     },
 
 
@@ -77,8 +63,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'Safari', 'IE11 - Win7'],
-    // browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox', 'Safari'],
 
 
     // Continuous Integration mode
