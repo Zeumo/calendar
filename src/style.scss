@@ -114,5 +114,9 @@
     padding: 2px 5px;
     border-radius: 3px;
     font-size: 13px;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
