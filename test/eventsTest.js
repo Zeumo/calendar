@@ -74,7 +74,7 @@ describe('events', () => {
       startDay: 0,
       distance: 4,
       continues: 'before',
-      time: '10a'
+      startTime: '10a'
     })
   })
 })

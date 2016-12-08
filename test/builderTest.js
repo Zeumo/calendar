@@ -17,11 +17,10 @@ describe('builder', function () {
   })
 
   it('returns a week', function () {
-    let node = builder.week([1,2,3,4,5,6,7].map(function (day) {
-      return new Date(2016, 11, day)
-    }))
+    let days = [1,2,3,4,5,6,7].map((day) => new Date(2016, 11, day))
+    let node = builder.week(days)
 
-    expect(node.querySelectorAll('.day').length, 'to equal', 7)
+    expect(node.querySelectorAll('.z-day').length, 'to equal', 7)
   })
 
   it('returns a month', function () {
@@ -31,6 +30,6 @@ describe('builder', function () {
 
   it('returns the current month and year', function () {
     let node = builder.template(_state)
-    expect(node.querySelector('.title').innerHTML, 'to equal', 'April 2015')
+    expect(node.querySelector('.z-title').innerHTML, 'to equal', 'April 2015')
   })
 })
