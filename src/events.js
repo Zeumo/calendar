@@ -90,7 +90,7 @@ export const decorateEvent = (weekStart, event) => {
     continues,
     startDay: event.start_date.getDay(),
     distance: getDistanceToEndOfWeek(weekStart, event),
-    startTime: date.simpleTime(event.start_date),
+    startTime: date.formatSimpleTime(event.start_date),
     showStartTime: continues.includes('after') || continues === ''
   })
 }

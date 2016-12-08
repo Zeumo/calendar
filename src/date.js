@@ -47,7 +47,7 @@ export const distanceInDays = (startDate, endDate) => {
   )
 }
 
-export const simpleTime = (date) => {
+export const formatSimpleTime = (date) => {
   let str = []
   let hr = date.getHours()
   let min = date.getMinutes()

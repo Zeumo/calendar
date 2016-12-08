@@ -45,9 +45,9 @@ describe('date', function () {
     var _1_00pm = new Date('April 6 2015 13:00')
     var _1_00am = new Date('April 6 2015 1:00')
     var _3_45pm = new Date('April 6 2015 15:45')
-    expect(date.simpleTime(_1_00pm), 'to equal', '1p')
-    expect(date.simpleTime(_1_00am), 'to equal', '1a')
-    expect(date.simpleTime(_3_45pm), 'to equal', '3:45p')
+    expect(date.formatSimpleTime(_1_00pm), 'to equal', '1p')
+    expect(date.formatSimpleTime(_1_00am), 'to equal', '1a')
+    expect(date.formatSimpleTime(_3_45pm), 'to equal', '3:45p')
   })
 
   it('checks if a date in a range', function () {
