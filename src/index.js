@@ -2,7 +2,9 @@ import { extend, noop } from 'lodash'
 import events from './events'
 import render from './render'
 
-require('./style.scss')
+if (process.env.NODE_ENV !== 'production') {
+  require('./style.scss')
+}
 
 var Calendar = function (el, options) {
   this.el = el

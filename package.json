@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot",
-    "build": "webpack -p",
+    "build": "NODE_ENV=production webpack -p",
     "test": "mocha",
     "karma": "karma start",
     "preversion": "npm run build && git commit dist -m \"Dist\""

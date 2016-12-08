@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.js',
@@ -17,15 +18,11 @@ module.exports = {
         test: /\.jsx$/,
         loader: 'nativejsx-loader',
         excludes: /node_modules/,
-        query: {
-          variablePrefix: '_',
-          declarationType: 'let'
-        }
       }
     ],
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
@@ -37,5 +34,12 @@ module.exports = {
         loaders: ['style', 'css', 'sass']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    })
+  ]
 }
