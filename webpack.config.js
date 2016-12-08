@@ -8,10 +8,6 @@ module.exports = {
     libraryTarget: 'var',
     library: 'Calendar'
   },
-  externals: {
-    'lodash': '_',
-    'jquery': '$'
-  },
   module: {
     preLoaders: [
       {

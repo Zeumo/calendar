@@ -24,11 +24,9 @@
 <body>
   <div id="calendar"></div>
 
-  <!-- Dependencies -->
-  <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js"></script>
-
   <script src="dist/calendar.js"></script>
+
   <script>
     var calendar = new Calendar(document.getElementById('calendar'), {
       onDayClick: function(date) {
