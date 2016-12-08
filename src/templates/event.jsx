@@ -11,7 +11,12 @@ module.exports = (event) => {
   })
 
   return (
-    <td colSpan={event.distance} title={event.title}>
+    <td
+      colSpan={event.distance}
+      title={event.title}
+      className={`event-${event.eventId}`}
+      onMouseEnter={event.handleEventMouseEnter}
+      onMouseLeave={event.handleEventMouseLeave}>
       <div className={className}>
         {event.url ? (
           <a href={event.url}>{time}{event.title}</a>

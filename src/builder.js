@@ -41,7 +41,7 @@ export const rowSpacers = days => row => {
 
 export const events = (days) => {
   let events = eventUtils.eventsOnWeek(days[0], _state.events)
-    .map(partial(eventUtils.decorateEvent, days[0]))
+    .map(partial(eventUtils.decorateEvent, days[0], _state))
 
   return eventUtils.groupNonOverlappingEvents(events)
     .map(rowSpacers(days))

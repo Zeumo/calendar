@@ -83,14 +83,19 @@ export const getContinuesDirection = (weekStart, event) => {
   return ''
 }
 
-export const decorateEvent = (weekStart, event) => {
+export const decorateEvent = (weekStart, state, event) => {
   let continues = getContinuesDirection(weekStart, event)
+  let { start_date, end_date } = event
+  let eventId = Date.parse(start_date) + Date.parse(end_date)
 
   return Object.assign(event, {
+    eventId,
     continues,
     startDay: event.start_date.getDay(),
     distance: getDistanceToEndOfWeek(weekStart, event),
     startTime: date.formatSimpleTime(event.start_date),
-    showStartTime: continues.includes('after') || continues === ''
+    showStartTime: continues.includes('after') || continues === '',
+    handleEventMouseEnter: state.handleEventMouseEnter,
+    handleEventMouseLeave: state.handleEventMouseLeave,
   })
 }

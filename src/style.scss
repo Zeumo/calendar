@@ -121,6 +121,12 @@
     pointer-events: auto;
   }
 
+  .z-event-hover {
+    .z-event {
+      background: #8c53c6;
+    }
+  }
+
   .z-event-continues-before-after {
     border-radius: 1em;
   }
