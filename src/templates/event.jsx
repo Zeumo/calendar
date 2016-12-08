@@ -1,23 +1,26 @@
-const date = require('../date').default
+const classNames = require('../classNames').default
 
-module.exports = (props) => {
-  let time = date.isSameDay(props.today, props.start_date)
-    ? [date.simpleTime(props.start_date), ' ' ]
-    : null
+module.exports = (event) => {
+  if (event.spacer) {
+    return <td colSpan={event.colSpan} />
+  }
+
+  let time = event.showStartTime ? [event.startTime, ' '] : null
+  let className = classNames('event', {
+    [`event-continues-${event.continues}`]: event.continues,
+  })
 
   return (
-    <div className="event">
-      {props.url ? (
-        <a href={props.url} className="event-title">
-          {time}
-          {props.title}
-        </a>
-      ) : (
-        <span className="event-title">
-          {time}
-          {props.title}
-        </span>
-      )}
-    </div>
+    <td colSpan={event.distance} title={event.title}>
+      <div className={className}>
+        {event.url ? (
+          <a href={event.url}>{time}{event.title}</a>
+        ) : (
+          <span>
+            {time}{event.title}
+          </span>
+        )}
+      </div>
+    </td>
   )
 }

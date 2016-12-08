@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import date from './date'
+import * as date from './date'
 
 export default {
   events: {
