@@ -98,7 +98,7 @@ describe('events', () => {
     let event = makeEvent(new Date('Nov 27 2016 10:00'), 10)
     let weekStart = beginningOfWeek('Dec 4 2016')
 
-    expect(eventsUtil.decorateEvent(weekStart, event), 'to satisfy', {
+    expect(eventsUtil.decorateEvent(weekStart, {}, event), 'to satisfy', {
       startDay: 0,
       distance: 4,
       continues: 'before',
