@@ -1,15 +1,15 @@
-import * as date from './date'
+import { nextMonthDate, prevMonthDate, beginningOfDay } from './date'
 
 export default {
   handleNextMonthClick(e) {
     e.preventDefault()
-    var newDate = date.nextMonthDate(this.currentDate)
+    var newDate = nextMonthDate(this.currentDate)
     this.render(newDate)
   },
 
   handlePrevMonthClick(e) {
     e.preventDefault()
-    var newDate = date.prevMonthDate(this.currentDate)
+    var newDate = prevMonthDate(this.currentDate)
     this.render(newDate)
   },
 
@@ -19,6 +19,6 @@ export default {
   },
 
   handleDayClick(e, date) {
-    this.options.onDayClick(new Date(date))
+    this.options.onDayClick(new Date(beginningOfDay(date)))
   }
 }
