@@ -8,7 +8,7 @@ module.exports = (days) => {
           {days.map((date) => {
             return (
               <td
-                className={classNames({ 'z-active': date.active})}
+                className={classNames('z-day', { 'z-active': date.active})}
                 onClick={(e) => date.handleDayClick(e, date.date)} />
             )
           })}
