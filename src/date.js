@@ -118,6 +118,12 @@ export const prevMonthDate = (currentDate) => {
   return date
 }
 
+const toDates = (days, date) => {
+  return days.map((d) => {
+    return new Date(beginningOfDay(new Date(date).setDate(d)))
+  })
+}
+
 // [
 //   [01, 02, 03, 04, 05, 06, 07],
 //   [08, 09, 10, 11, 12, 13, 14],
@@ -135,12 +141,6 @@ export const buildWeeks = (date) => {
 
   // 0 = Sun, 1 = Mon, 2, Tues, ...
   let firstDayOffset = beginningOfMonth(date).getDay()
-
-  const toDates = function (days, _date) {
-    return days.map(function (d) {
-      return new Date(new Date(_date).setDate(d))
-    })
-  }
 
   // [1, 2, 3, 4, 5, ... 31]
   let days = toDates(inclusiveRange(1, totalDays), date)
