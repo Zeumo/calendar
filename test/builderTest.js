@@ -20,7 +20,7 @@ describe('builder', function () {
     let days = [1,2,3,4,5,6,7].map((day) => new Date(2016, 11, day))
     let node = builder.week(days)
 
-    expect(node.querySelectorAll('.z-day').length, 'to equal', 7)
+    expect(node.querySelector('.z-week-skeleton').querySelectorAll('.z-day').length, 'to equal', 7)
   })
 
   it('returns a month', function () {
