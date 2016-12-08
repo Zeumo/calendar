@@ -84,10 +84,13 @@ export const getContinuesDirection = (weekStart, event) => {
 }
 
 export const decorateEvent = (weekStart, event) => {
+  let continues = getContinuesDirection(weekStart, event)
+
   return Object.assign(event, {
+    continues,
     startDay: event.start_date.getDay(),
     distance: getDistanceToEndOfWeek(weekStart, event),
-    continues: getContinuesDirection(weekStart, event),
-    time: date.simpleTime(event.start_date),
+    startTime: date.simpleTime(event.start_date),
+    showStartTime: continues.includes('after') || continues === ''
   })
 }

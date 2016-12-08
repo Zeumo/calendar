@@ -34,20 +34,23 @@ module.exports = ({days, events}) => {
             {events.map((row, rowIndex) => {
               return (
                 <tr>
-                  {row.map((el) => {
-                    if (el.spacer) return <td colSpan={el.colSpan} />
+                  {row.map((event) => {
+                    if (event.spacer) return <td colSpan={event.colSpan} />
 
-                    let time = /right/.test(el.continues) ? `${el.time} ` : ''
+                    let time = event.showStartTime ? [event.startTime, ' '] : null
+                    let className = classNames('event', {
+                      [`event-continues-${event.continues}`]: event.continues,
+                    })
 
                     return (
-                      <td colSpan={el.distance} title={el.title}>
-                        <div className={classNames('event', {
-                          [`event-continues-${el.continues}`]: el.continues,
-                        })}>
-                          {el.url ? (
-                            <a href={el.url}>{time}{el.title}</a>
+                      <td colSpan={event.distance} title={event.title}>
+                        <div className={className}>
+                          {event.url ? (
+                            <a href={event.url}>{time}{event.title}</a>
                           ) : (
-                            time + el.title
+                            <span>
+                              {time}{event.title}
+                            </span>
                           )}
                         </div>
                       </td>
