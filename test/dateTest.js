@@ -1,5 +1,5 @@
 import expect from 'unexpected'
-import date from '../src/date'
+import * as date from '../src/date'
 
 var TODAY = new Date('April 6, 2015 10:00')
 var TOMORROW = new Date('April 7, 2015 10:00')

@@ -1,6 +1,6 @@
 import { partial } from 'lodash'
-import dateUtils from './date'
-import eventUtils from './events'
+import * as dateUtils from './date'
+import * as eventUtils from './events'
 import { SHORT_DAY_NAMES } from './locale'
 
 let _state = {}
@@ -42,7 +42,7 @@ export default {
 
   events(days) {
     let events = eventUtils.eventsOnWeek(days[0], _state.events)
-      .map(partial(eventUtils.decorateEvent.bind(eventUtils), days[0]))
+      .map(partial(eventUtils.decorateEvent, days[0]))
 
     return eventUtils.groupNonOverlappingEvents(events)
       .map(this.rowSpacers(days))

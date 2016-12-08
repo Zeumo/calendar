@@ -1,6 +1,6 @@
 import expect from 'unexpected'
-import date from '../src/date'
-import eventsUtil from '../src/events'
+import { beginningOfWeek } from '../src/date'
+import * as eventsUtil from '../src/events'
 
 const ONE_DAY = 1000 * 60 * 60 * 24
 
@@ -47,28 +47,28 @@ describe('events', () => {
 
   it('finds the distance for event starting same week', () => {
     let event = makeEvent(new Date('Dec 8 2016'), 10)
-    let weekStart = date.beginningOfWeek('Dec 4 2016')
+    let weekStart = beginningOfWeek('Dec 4 2016')
 
     expect(eventsUtil.getDistanceToEndOfWeek(weekStart, event), 'to equal', 3)
   })
 
   it('finds the distance for event spanning entire week', () => {
     let event = makeEvent(new Date('Nov 27 2016'), 14)
-    let weekStart = date.beginningOfWeek('Dec 4 2016')
+    let weekStart = beginningOfWeek('Dec 4 2016')
 
     expect(eventsUtil.getDistanceToEndOfWeek(weekStart, event), 'to equal', 7)
   })
 
   it('finds the distance for event ending same week', () => {
     let event = makeEvent(new Date('Nov 27 2016'), 10)
-    let weekStart = date.beginningOfWeek('Dec 4 2016')
+    let weekStart = beginningOfWeek('Dec 4 2016')
 
     expect(eventsUtil.getDistanceToEndOfWeek(weekStart, event), 'to equal', 4)
   })
 
   it('decorates event with extra details', () => {
     let event = makeEvent(new Date('Nov 27 2016 10:00'), 10)
-    let weekStart = date.beginningOfWeek('Dec 4 2016')
+    let weekStart = beginningOfWeek('Dec 4 2016')
 
     expect(eventsUtil.decorateEvent(weekStart, event), 'to satisfy', {
       startDay: 0,
