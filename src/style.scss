@@ -17,18 +17,19 @@
     vertical-align: top;
   }
 
-  .container {
-    height: calc(100% - (46px + 36px));
+  .calendar-container {
+    height: 100%;
+    height: calc(100% - 46px);
   }
 
   .weeks {
     height: 100%;
+    height: calc(100% - 36px);
   }
 
   .week {
     height: 16.667%;
     position: relative;
-    overflow: hidden;
   }
 
   .week-skeleton {
@@ -42,7 +43,7 @@
     td {
       border-style: solid;
       border-width: 1px;
-      border-color: #eee;
+      border-color: #ddd;
       padding: 0;
     }
 
@@ -77,10 +78,12 @@
   }
 
   .overlay {
-    thead {
-      text-align: right;
+    height: 100%;
+    overflow: hidden;
 
+    thead {
       th {
+        text-align: right;
         padding: 8px 10px;
         font-weight: normal;
 
@@ -95,6 +98,7 @@
 
   .day-names {
     th {
+      text-align: center;
       padding: 8px 0;
     }
   }
