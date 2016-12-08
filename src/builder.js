@@ -1,14 +1,9 @@
+import { partial } from 'lodash'
 import dateUtils from './date'
+import eventUtils from './events'
 import { SHORT_DAY_NAMES } from './locale'
 
 let _state = {}
-
-const eventsOnDate = (date) => {
-  return (_state.events || []).filter((event) => {
-    return dateUtils.isBetween(date, event.start_date, event.end_date)
-  }, [])
-    .sort((a, b) => a.start_date > b.start_date)
-}
 
 export default {
   dayNames() {
@@ -16,24 +11,59 @@ export default {
     return node(SHORT_DAY_NAMES)
   },
 
-  events(date) {
-    let node = require('./templates/event.jsx')
+  rowSpacers: days => row => {
+    let offset = 0
 
-    return eventsOnDate(date)
-      .map((event) => node(Object.assign(event, { today: date })))
+    return row.reduce((result, event, i) => {
+      let spacer = event
+      let lastEvent = result[i - 1]
+
+      offset = lastEvent
+        ? lastEvent.distance - event.startDay
+        : event.startDay
+
+      if (event.start_date < days[0]) {
+        offset = 0
+      }
+
+      if (offset) {
+        spacer = [
+          {
+            spacer: true,
+            colSpan: offset,
+          },
+          event
+        ]
+      }
+
+      return result.concat(spacer)
+    }, [])
+  },
+
+  events(days) {
+    let events = eventUtils.eventsOnWeek(days[0], _state.events)
+      .map(partial(eventUtils.decorateEvent.bind(eventUtils), days[0]))
+
+    return eventUtils.groupNonOverlappingEvents(events)
+      .map(this.rowSpacers(days))
+  },
+
+  day(date) {
+    return {
+      day: date.getDate(),
+      date: date,
+      active: dateUtils.isToday(date) ? 'active' : '',
+      trailing: !dateUtils.isSameMonth(_state.date, date),
+    }
   },
 
   week(days) {
     let node = require('./templates/week.jsx')
-    return node(days.map((date) => {
-      return {
-        day: date.getDate(),
-        date: date,
-        active: dateUtils.isToday(date) ? 'active' : '',
-        trailing: !dateUtils.isSameMonth(_state.date, date),
-        events: this.events(date)
-      }
-    }))
+
+    return node({
+      events: this.events(days),
+      days: days.map(this.day)
+    })
   },
 
   month(weeks) {
