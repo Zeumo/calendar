@@ -1,5 +1,5 @@
 import { extend, noop } from 'lodash'
-import events from './events'
+import events from './domEvents'
 import render from './render'
 
 if (process.env.NODE_ENV !== 'production') {

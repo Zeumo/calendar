@@ -1,5 +1,4 @@
 import dateUtils from './date'
-import dom from './dom'
 import { SHORT_DAY_NAMES } from './locale'
 
 let _state = {}
