@@ -68,16 +68,16 @@ export const getContinuesDirection = (weekStart, event) => {
   const startsBeforeWeekStart = date.isBefore(event.start_date, weekStart)
   const endsAfterWeekEnds = date.isAfter(event.end_date, date.endOfWeek(weekStart))
 
+  if (startsBeforeWeekStart && endsAfterWeekEnds) {
+    return 'before-after'
+  }
+
   if (startsBeforeWeekStart) {
     return 'before'
   }
 
   if (endsAfterWeekEnds) {
     return 'after'
-  }
-
-  if (startsBeforeWeekStart && endsAfterWeekEnds) {
-    return 'before-after'
   }
 
   return ''
