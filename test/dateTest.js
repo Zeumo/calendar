@@ -2,6 +2,7 @@ import expect from 'unexpected'
 import date from '../src/date'
 
 var TODAY = new Date('April 6, 2015 10:00')
+var TOMORROW = new Date('April 7, 2015 10:00')
 
 describe('date', function () {
   it('returns the beginning of the month', function () {
@@ -10,6 +11,14 @@ describe('date', function () {
 
   it('returns the end of the month', function () {
     expect(date.endOfMonth(TODAY), 'to equal', new Date('April 30 2015'))
+  })
+
+  it('returns beginning of week', () => {
+    expect(date.beginningOfWeek(TODAY), 'to equal', 1428210000000)
+  })
+
+  it('returns end of week', () => {
+    expect(date.endOfWeek(TODAY), 'to equal', 1428814799999)
   })
 
   it('returns beginning of day', () => {
@@ -45,6 +54,14 @@ describe('date', function () {
     expect(date.isBetween(TODAY, new Date('April 5 2015'), new Date('April 7 2015')), 'to be true')
     expect(date.isBetween(TODAY, new Date('April 5 2015'), new Date('April 6 2015')), 'to be true')
     expect(date.isBetween(TODAY, new Date('August 1 2015'), new Date('August 3 2015')), 'to be false')
+  })
+
+  it('checks if date is before another date', () => {
+    expect(date.isBefore(TODAY, TOMORROW), 'to be true')
+  })
+
+  it('checks if date is after another date', () => {
+    expect(date.isAfter(TODAY, TOMORROW), 'to be false')
   })
 
   it('checks if a date is the same day', function () {

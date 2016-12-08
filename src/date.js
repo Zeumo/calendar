@@ -1,6 +1,8 @@
 import { take, takeRight, chunk, range } from 'lodash'
 import { LONG_MONTH_NAMES } from './locale'
 
+const ONE_DAY = 1000 * 60 * 60 * 24
+
 const inclusiveRange = (start, end) => range(start, end + 1)
 
 export default {
@@ -20,12 +22,30 @@ export default {
     return LONG_MONTH_NAMES[date.getMonth()]
   },
 
+  beginningOfWeek(date) {
+    let _date = new Date(date)
+    return this.beginningOfDay(_date.setDate(_date.getDate() - _date.getDay() + 0))
+  },
+
+  endOfWeek(date) {
+    let _date = new Date(date)
+    return this.endOfDay(_date.setDate(_date.getDate() - _date.getDay() + 6))
+  },
+
   beginningOfDay(date) {
     return new Date(date).setHours(0, 0, 0, 0)
   },
 
   endOfDay(date) {
     return new Date(date).setHours(23, 59, 59, 999)
+  },
+
+  distanceInDays(startDate, endDate) {
+    return Math.round(
+      Math.abs(
+        (this.beginningOfDay(startDate) - this.endOfDay(endDate)) / ONE_DAY
+      )
+    )
   },
 
   simpleTime(date) {
@@ -42,6 +62,14 @@ export default {
     str.push(meridian)
 
     return str.join('')
+  },
+
+  isBefore(srcDate, targetDate) {
+    return new Date(srcDate) < new Date(targetDate)
+  },
+
+  isAfter(srcDate, targetDate) {
+    return new Date(srcDate) > new Date(targetDate)
   },
 
   isBetween(srcDate, startDate, endDate) {
