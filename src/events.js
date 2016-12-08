@@ -1,5 +1,5 @@
 import * as date from '../src/date'
-import { includes, flatten, difference } from 'lodash'
+import { flatten, difference } from 'lodash'
 
 export const isOverlapping = (collection, item) => {
   return !collection.every((e) => {
@@ -24,7 +24,7 @@ export const groupNonOverlappingEvents = (events) => {
     let lastResult = result[i - 1] || []
     set = difference(set, lastResult)
 
-    if (includes(flatten(result), event) || !set.length) return result
+    if (flatten(result).includes(event) || !set.length) return result
 
     return result.concat([
       findNonOverlappingEvents(set, [event])

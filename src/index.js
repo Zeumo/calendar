@@ -1,4 +1,3 @@
-import { extend, noop } from 'lodash'
 import domEvents from './domEvents'
 import render from './render'
 
@@ -9,8 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
 var Calendar = function (el, options) {
   this.el = el
 
-  this.options = extend({
-    onDayClick: noop
+  this.options = Object.assign({
+    onDayClick: () => {}
   }, options)
 
   this.currentDate = new Date()
@@ -21,7 +20,7 @@ var Calendar = function (el, options) {
   }, {})
 }
 
-extend(Calendar.prototype, {
+Object.assign(Calendar.prototype, {
   render
 })
 
