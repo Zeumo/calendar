@@ -47,7 +47,7 @@ export default {
   isBetween(srcDate, startDate, endDate) {
     let _srcDate   = this.beginningOfDay(srcDate)
     let _startDate = this.beginningOfDay(startDate)
-    let _endDate   = this.beginningOfDay(endDate)
+    let _endDate   = this.endOfDay(endDate)
 
     return _srcDate >= _startDate && srcDate <= _endDate
   },

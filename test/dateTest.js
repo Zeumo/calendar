@@ -1,7 +1,7 @@
 import expect from 'unexpected'
 import date from '../src/date'
 
-var TODAY = new Date('April 6 2015')
+var TODAY = new Date('April 6, 2015 10:00')
 
 describe('date', function () {
   it('returns the beginning of the month', function () {
@@ -43,6 +43,7 @@ describe('date', function () {
 
   it('checks if a date in a range', function () {
     expect(date.isBetween(TODAY, new Date('April 5 2015'), new Date('April 7 2015')), 'to be true')
+    expect(date.isBetween(TODAY, new Date('April 5 2015'), new Date('April 6 2015')), 'to be true')
     expect(date.isBetween(TODAY, new Date('August 1 2015'), new Date('August 3 2015')), 'to be false')
   })
 
