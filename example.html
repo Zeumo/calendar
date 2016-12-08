@@ -39,8 +39,11 @@
     var TOMORROW = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate() + 1)
 
     calendar.render(null, [
-      {"title":"Physicians Thank You Lunch","start_date":TODAY,"end_date":new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate() + 1)},
+      {"title":"Physicians Thank You Lunch","start_date":TODAY,"end_date":new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate())},
+      {"title":"Week event","start_date":TODAY,"end_date":new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate() + 12)},
+
       {"title":"Meeting","start_date":TOMORROW,"end_date":new Date(TOMORROW.getFullYear(), TOMORROW.getMonth(), TOMORROW.getDate() + 1)},
+      {"title":"Meeting 2","start_date":TOMORROW,"end_date":new Date(TOMORROW.getFullYear(), TOMORROW.getMonth(), TOMORROW.getDate() + 3)},
 
       {"title":"Physicians Thank You Lunch","start_date":"2014-02-28T11:00:00.000-06:00","end_date":"2014-02-28T13:00:00.000-06:00"},
       {"title":"Amplify!","start_date":"2015-10-27T08:00:00.000-05:00","end_date":"2015-10-29T18:00:00.000-05:00"},
