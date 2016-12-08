@@ -8,18 +8,16 @@ module.exports = ({days, events}) => {
     <div className="z-week">
       {weekSkeleton(days)}
 
-      <div className="z-overlay">
-        <table className="z-events">
-          <thead>
-            <tr>
-              {days.map(dayName)}
-            </tr>
-          </thead>
-          <tbody>
-            {events.map(eventsRow)}
-          </tbody>
-        </table>
-      </div>
+      <table className="z-overlay">
+        <thead>
+          <tr>
+            {days.map(dayName)}
+          </tr>
+        </thead>
+        <tbody>
+          {events.map(eventsRow)}
+        </tbody>
+      </table>
     </div>
   )
 }

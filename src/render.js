@@ -1,4 +1,4 @@
-import builder from './builder'
+import { template } from './builder'
 
 var parseDates = (events) => {
   return _.map(events, (event) => {
@@ -17,10 +17,10 @@ export default function (newDate, calendarEvents) {
   this.currentDate = newDate || this.currentDate
   this.calendarEvents = parseDates(calendarEvents || this.calendarEvents)
 
-  let node = builder.template({
+  let node = template(Object.assign({
     date: this.currentDate,
     events: this.calendarEvents
-  })
+  }, this.events))
 
   this.el.innerHTML = ''
   this.el.appendChild(node)

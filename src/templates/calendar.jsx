@@ -4,9 +4,9 @@ module.exports = (props) => {
       <div className="z-header">
         <span className="z-title">{props.monthName}{' '}{props.year}</span>
         <div className="z-actions">
-          <a href="#" className="today">Today</a>
-          <a href="#" className="prev">&larr;</a>
-          <a href="#" className="next">&rarr;</a>
+          <a href="#" className="today" onClick={props.handleTodayClick}>Today</a>
+          <a href="#" className="prev" onClick={props.handlePrevMonthClick}>&larr;</a>
+          <a href="#" className="next" onClick={props.handleNextMonthClick}>&rarr;</a>
         </div>
       </div>
       <div class="z-container">

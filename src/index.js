@@ -1,5 +1,5 @@
 import { extend, noop } from 'lodash'
-import events from './domEvents'
+import domEvents from './domEvents'
 import render from './render'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -16,11 +16,13 @@ var Calendar = function (el, options) {
   this.currentDate = new Date()
   this.calendarEvents = {}
 
-  events._delegate.call(this)
+  this.events = Object.keys(domEvents).reduce((r, f) => {
+    return Object.assign(r, { [f]: domEvents[f].bind(this) })
+  }, {})
 }
 
-extend(Calendar.prototype, events, {
-  render: render
+extend(Calendar.prototype, {
+  render
 })
 
 module.exports = Calendar

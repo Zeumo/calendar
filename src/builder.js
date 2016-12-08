@@ -1,7 +1,6 @@
 import { partial } from 'lodash'
 import * as dateUtils from './date'
 import * as eventUtils from './events'
-import domEvents from './domEvents'
 import { SHORT_DAY_NAMES } from './locale'
 
 let _state = {}
@@ -54,6 +53,7 @@ export const day = (date) => {
     date: date,
     active: dateUtils.isToday(date) ? 'active' : '',
     trailing: !dateUtils.isSameMonth(_state.date, date),
+    handleDayClick: _state.handleDayClick,
   }
 }
 
@@ -78,6 +78,9 @@ export const template = (props) => {
     monthName: dateUtils.getMonthName(_state.date),
     year: _state.date.getFullYear(),
     header: dayNames(),
-    weeks: month(dateUtils.buildWeeks(_state.date))
+    weeks: month(dateUtils.buildWeeks(_state.date)),
+    handlePrevMonthClick: props.handlePrevMonthClick,
+    handleNextMonthClick: props.handleNextMonthClick,
+    handleTodayClick: props.handleTodayClick,
   })
 }
