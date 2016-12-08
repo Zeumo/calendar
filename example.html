@@ -29,8 +29,8 @@
 
   <script>
     var calendar = new Calendar(document.getElementById('calendar'), {
-      onDayClick: function(date) {
-        console.log(date);
+      onDayClick: function(e, date) {
+        console.log(e, date);
       }
     });
     var TODAY = new Date()

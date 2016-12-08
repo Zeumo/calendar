@@ -19,6 +19,6 @@ export default {
   },
 
   handleDayClick(e, date) {
-    this.options.onDayClick(new Date(beginningOfDay(date)))
+    this.options.onDayClick(e, new Date(beginningOfDay(date)))
   }
 }
