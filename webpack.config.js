@@ -8,6 +8,9 @@ module.exports = {
     libraryTarget: 'var',
     library: 'Calendar'
   },
+  externals: {
+    lodash: '_'
+  },
   module: {
     preLoaders: [
       {
