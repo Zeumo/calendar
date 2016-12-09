@@ -2,7 +2,7 @@
 
 A simple calendar to render months with events.
 
-![](http://f.cl.ly/items/0J3l3X2J3n3825403M38/demo.mov.gif)
+![](example/screenshot.png)
 
 ## Basic usage
 
@@ -31,11 +31,12 @@ calendar.render(new Date(), [
 
 ## Development
 
-`npm install`
-`npm start`
+* `npm install`
+* `npm start`
 
-`npm run` to list available tasks
+* `npm run` to list available tasks or peek at package.json
 
 ## Specs
 
-`karma start`
+* `npm test`
+* `karma start` to run tests in browsers
