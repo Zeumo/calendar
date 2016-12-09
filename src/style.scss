@@ -25,12 +25,15 @@
   .z-weeks {
     height: 100%;
     height: calc(100% - 36px);
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
   }
 
   .z-week {
     height: 16.667%;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid #ddd;
   }
 
   .z-week-skeleton {
@@ -41,9 +44,7 @@
     right: 0;
 
     td {
-      border-style: solid;
-      border-width: 1px;
-      border-color: #ddd;
+      border-right: 1px solid #ddd;
       padding: 0;
     }
 
