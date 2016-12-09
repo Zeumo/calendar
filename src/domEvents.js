@@ -1,3 +1,4 @@
+import { forEach } from 'lodash'
 import classNames from './classNames'
 import { nextMonthDate, prevMonthDate, beginningOfDay } from './date'
 
@@ -14,7 +15,7 @@ const toggleClass = (el, className) => {
     [className]: !includesClassName
   }))
 
-  document.querySelectorAll('.' + classList[0]).forEach((node) => {
+  forEach(document.querySelectorAll('.' + classList[0]), (node) => {
     node.className = nextClassNames
   })
 }
