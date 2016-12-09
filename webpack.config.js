@@ -1,15 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: './dist/calendar.js',
-    libraryTarget: 'var',
+    libraryTarget: 'umd',
     library: 'Calendar'
-  },
-  externals: {
-    lodash: '_'
   },
   module: {
     preLoaders: [
@@ -25,6 +23,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
+          plugins: ['lodash'],
           presets: ['es2015']
         }
       },
@@ -35,6 +34,8 @@ module.exports = {
     ]
   },
   plugins: [
+    new LodashModuleReplacementPlugin,
+    new webpack.optimize.OccurrenceOrderPlugin,
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
