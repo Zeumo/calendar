@@ -1,7 +1,8 @@
+require('./polyfills')
+require('./style.scss')
+
 import domEvents from './domEvents'
 import render from './render'
-
-require('./style.scss')
 
 var Calendar = function (el, options) {
   this.el = el
