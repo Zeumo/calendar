@@ -1,9 +1,7 @@
 import domEvents from './domEvents'
 import render from './render'
 
-if (process.env.NODE_ENV !== 'production') {
-  require('./style.scss')
-}
+require('./style.scss')
 
 var Calendar = function (el, options) {
   this.el = el

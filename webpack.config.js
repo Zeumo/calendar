@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -29,13 +30,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css!sass'),
       }
     ]
   },
   plugins: [
     new LodashModuleReplacementPlugin,
     new webpack.optimize.OccurrenceOrderPlugin,
+    new ExtractTextPlugin('dist/calendar.css'),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
