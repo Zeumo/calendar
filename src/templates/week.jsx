@@ -1,4 +1,3 @@
-let classNames = require('../classNames').default
 let weekSkeleton = require('./weekSkeleton.jsx')
 let dayName = require('./dayName.jsx')
 let eventsRow = require('./eventsRow.jsx')
