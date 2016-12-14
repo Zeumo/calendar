@@ -44,9 +44,9 @@ export const groupNonOverlappingEvents = (events) => {
   }, [])
 }
 
-export const eventsOnWeek = (_date, events = []) => {
-  let _startOfWeek = startOfWeek(_date)
-  let _endOfWeek = endOfWeek(_date)
+export const eventsOnWeek = (date, events = []) => {
+  let _startOfWeek = startOfWeek(date)
+  let _endOfWeek = endOfWeek(date)
 
   return events.filter((event) => {
     return isBetween(event.start_date, _startOfWeek, _endOfWeek) ||
