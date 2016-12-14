@@ -1,6 +1,6 @@
 import { forEach } from 'lodash'
 import classNames from './classNames'
-import { nextMonthDate, prevMonthDate, beginningOfDay } from './date'
+import { addMonths, subMonths, startOfDay } from './date'
 
 const toggleClass = (el, className) => {
   let classList = el.className.split(' ')
@@ -23,13 +23,13 @@ const toggleClass = (el, className) => {
 export default {
   handleNextMonthClick(e) {
     e.preventDefault()
-    var newDate = nextMonthDate(this.currentDate)
+    var newDate = addMonths(this.currentDate, 1)
     this.render(newDate)
   },
 
   handlePrevMonthClick(e) {
     e.preventDefault()
-    var newDate = prevMonthDate(this.currentDate)
+    var newDate = subMonths(this.currentDate, 1)
     this.render(newDate)
   },
 
@@ -39,7 +39,7 @@ export default {
   },
 
   handleDayClick(e, date) {
-    this.options.onDayClick(e, new Date(beginningOfDay(date)))
+    this.options.onDayClick(e, startOfDay(date))
   },
 
   handleEventMouseEnter(e) {

@@ -1,13 +1,13 @@
-require('./polyfills')
 require('./style.scss')
 
+import { assign } from 'lodash'
 import domEvents from './domEvents'
 import render from './render'
 
 var Calendar = function (el, options) {
   this.el = el
 
-  this.options = Object.assign({
+  this.options = assign({
     onDayClick: () => {}
   }, options)
 
@@ -15,11 +15,11 @@ var Calendar = function (el, options) {
   this.calendarEvents = {}
 
   this.events = Object.keys(domEvents).reduce((r, f) => {
-    return Object.assign(r, { [f]: domEvents[f].bind(this) })
+    return assign(r, { [f]: domEvents[f].bind(this) })
   }, {})
 }
 
-Object.assign(Calendar.prototype, {
+assign(Calendar.prototype, {
   render
 })
 

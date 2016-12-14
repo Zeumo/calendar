@@ -1,9 +1,21 @@
-import * as date from '../src/date'
-import { flatten, difference } from 'lodash'
+import { assign, difference } from 'lodash'
+import {
+  startOfDay,
+  endOfDay,
+  startOfWeek,
+  endOfWeek,
+  isBetween,
+  differenceInDays,
+  isAfter,
+  isBefore,
+  formatCondensedTime,
+} from '../src/date'
+
+const flatten = (arr) => arr.reduce((p, c) => p.concat(c), [])
 
 export const isOverlapping = (collection, item) => {
   return !collection.every((e) => {
-    return date.beginningOfDay(item.start_date) > date.endOfDay(e.end_date)
+    return startOfDay(item.start_date) > endOfDay(e.end_date)
   })
 }
 
@@ -33,40 +45,40 @@ export const groupNonOverlappingEvents = (events) => {
 }
 
 export const eventsOnWeek = (_date, events = []) => {
-  let beginningOfWeek = date.beginningOfWeek(_date)
-  let endOfWeek = date.endOfWeek(_date)
+  let _startOfWeek = startOfWeek(_date)
+  let _endOfWeek = endOfWeek(_date)
 
   return events.filter((event) => {
-    return date.isBetween(event.start_date, beginningOfWeek, endOfWeek) ||
-      date.isBetween(event.end_date, beginningOfWeek, endOfWeek) ||
-      event.start_date < beginningOfWeek && event.end_date > endOfWeek
+    return isBetween(event.start_date, _startOfWeek, _endOfWeek) ||
+      isBetween(event.end_date, _startOfWeek, _endOfWeek) ||
+      event.start_date < _startOfWeek && event.end_date > _endOfWeek
   })
 }
 
 export const getDistanceToEndOfWeek = (weekStart, event) => {
   let startDay = event.start_date.getDay()
-  let distanceInDays = date.distanceInDays(event.start_date, event.end_date)
+  let distanceInDays = differenceInDays(event.end_date, event.start_date)
   let endDay = startDay + distanceInDays
 
-  if (date.isAfter(event.start_date, weekStart)) {
+  if (isAfter(event.start_date, weekStart)) {
     let distanceToEndOfWeek = 7 - startDay
     return endDay > 7 ? distanceToEndOfWeek : distanceInDays
   }
 
-  if (date.isBefore(event.start_date, weekStart)) {
-    if (date.isAfter(event.end_date, date.endOfWeek(weekStart))) {
+  if (isBefore(event.start_date, weekStart)) {
+    if (isAfter(event.end_date, endOfWeek(weekStart))) {
       return 7
     }
 
-    if (date.isBefore(event.end_date, date.endOfWeek(weekStart))) {
+    if (isBefore(event.end_date, endOfWeek(weekStart))) {
       return endDay % 7
     }
   }
 }
 
 export const getContinuesDirection = (weekStart, event) => {
-  const startsBeforeWeekStart = date.isBefore(event.start_date, weekStart)
-  const endsAfterWeekEnds = date.isAfter(event.end_date, date.endOfWeek(weekStart))
+  const startsBeforeWeekStart = isBefore(event.start_date, weekStart)
+  const endsAfterWeekEnds = isAfter(event.end_date, endOfWeek(weekStart))
 
   if (startsBeforeWeekStart && endsAfterWeekEnds) {
     return 'before-after'
@@ -88,12 +100,12 @@ export const decorateEvent = (weekStart, state, event) => {
   let { start_date, end_date } = event
   let eventId = Date.parse(start_date) + Date.parse(end_date)
 
-  return Object.assign(event, {
+  return assign(event, {
     eventId,
     continues,
     startDay: event.start_date.getDay(),
     distance: getDistanceToEndOfWeek(weekStart, event),
-    startTime: date.formatSimpleTime(event.start_date),
+    startTime: formatCondensedTime(event.start_date),
     showStartTime: continues === 'after' || continues === '',
     handleEventMouseEnter: state.handleEventMouseEnter,
     handleEventMouseLeave: state.handleEventMouseLeave,
