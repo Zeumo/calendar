@@ -1,4 +1,3 @@
-var fs = require('fs')
 var nativejsx = require('nativejsx')
 
 require.extensions['.jsx'] = function(module, filename) {
