@@ -5,7 +5,7 @@ var TODAY = new Date('April 6, 2015 10:00')
 var TOMORROW = new Date('April 7, 2015 10:00')
 
 describe('date', function () {
-  it('returns the beginning of the month', function () {
+  it('returns the start of the month', function () {
     expect(date.startOfMonth(TODAY), 'to equal', new Date('April 1 2015'))
   })
 
@@ -13,20 +13,20 @@ describe('date', function () {
     expect(date.endOfMonth(TODAY), 'to equal', new Date('April 30 2015'))
   })
 
-  it('returns beginning of week', () => {
-    expect(date.startOfWeek(TODAY), 'to equal', 1428210000000)
+  it('returns start of week', () => {
+    expect(date.startOfWeek(TODAY), 'to equal', +(new Date('April 5 2015 00:00:00')))
   })
 
   it('returns end of week', () => {
-    expect(date.endOfWeek(TODAY), 'to equal', 1428814799999)
+    expect(date.endOfWeek(TODAY), 'to equal', +(new Date('April 11 2015 23:59:59.999')))
   })
 
-  it('returns beginning of day', () => {
-    expect(date.startOfDay(TODAY), 'to equal', 1428296400000)
+  it('returns start of day', () => {
+    expect(date.startOfDay(TODAY), 'to equal', +(new Date('April 6 2015 00:00:00')))
   })
 
   it('returns end of day', () => {
-    expect(date.endOfDay(TODAY), 'to equal', 1428382799999)
+    expect(date.endOfDay(TODAY), 'to equal', +(new Date('April 6 2015 23:59:59.999')))
   })
 
   it('returns days in a month', function () {
