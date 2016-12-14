@@ -1,6 +1,5 @@
-import { partial } from 'lodash'
-import * as dateUtils from './date'
-import * as eventUtils from './events'
+import { eventsOnWeek, decorateEvent, groupNonOverlappingEvents } from './events'
+import { isToday, isSameMonth, getMonthName, buildWeeks } from './date'
 import { SHORT_DAY_NAMES } from './locale'
 
 let _state = {}
@@ -40,10 +39,10 @@ export const rowSpacers = days => row => {
 }
 
 export const events = (days) => {
-  let events = eventUtils.eventsOnWeek(days[0], _state.events)
-    .map(partial(eventUtils.decorateEvent, days[0], _state))
+  let events = eventsOnWeek(days[0], _state.events)
+    .map((event) => decorateEvent(days[0], _state, event))
 
-  return eventUtils.groupNonOverlappingEvents(events)
+  return groupNonOverlappingEvents(events)
     .map(rowSpacers(days))
 }
 
@@ -51,8 +50,8 @@ export const day = (date) => {
   return {
     day: date.getDate(),
     date: date,
-    active: dateUtils.isToday(date) ? 'active' : '',
-    trailing: !dateUtils.isSameMonth(_state.date, date),
+    active: isToday(date) ? 'active' : '',
+    trailing: !isSameMonth(_state.date, date),
     handleDayClick: _state.handleDayClick,
   }
 }
@@ -75,10 +74,10 @@ export const template = (props) => {
   let node = require('./templates/calendar.jsx')
 
   return node({
-    monthName: dateUtils.getMonthName(_state.date),
+    monthName: getMonthName(_state.date),
     year: _state.date.getFullYear(),
     header: dayNames(),
-    weeks: month(dateUtils.buildWeeks(_state.date)),
+    weeks: month(buildWeeks(_state.date)),
     handlePrevMonthClick: props.handlePrevMonthClick,
     handleNextMonthClick: props.handleNextMonthClick,
     handleTodayClick: props.handleTodayClick,

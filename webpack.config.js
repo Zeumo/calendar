@@ -1,4 +1,3 @@
-var path = require('path')
 var webpack = require('webpack')
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')

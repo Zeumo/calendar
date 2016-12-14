@@ -4,9 +4,10 @@ export default (...args) => {
 
     if (typeof condition === 'object') {
       classNames = Object.keys(condition).map((className) => {
-        if (condition[className]) return className
+        return condition[className] && className
       }).filter(f => f)
     }
+    
     return result.concat(classNames)
   }, []).join(' ')
 }
