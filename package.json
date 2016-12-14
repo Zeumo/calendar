@@ -37,6 +37,7 @@
     "lodash-webpack-plugin": "^0.10.6",
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.0.0",
+    "nativejsx": "^3.2.0",
     "nativejsx-loader": "^1.0.1",
     "node-sass": "^3.0.0-beta.4",
     "sass-loader": "^4.0.2",
