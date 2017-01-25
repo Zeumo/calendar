@@ -1,9 +1,9 @@
-import { chunk } from 'lodash'
+import { chunk, range } from 'lodash'
 import { LONG_MONTH_NAMES } from './locale'
 
 const ONE_DAY = 1000 * 60 * 60 * 24
 
-const inclusiveRange = (start, end) => Array.from(Array(end), (_, i) => start + i)
+const inclusiveRange = (start, end) => range(start, end + 1)
 
 export const startOfMonth = (date) => {
   return new Date(date.getFullYear(), date.getMonth(), 1)
