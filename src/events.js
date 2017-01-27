@@ -1,4 +1,4 @@
-import { assign, difference } from 'lodash'
+import { assign, includes, difference } from 'lodash'
 import {
   startOfDay,
   endOfDay,
@@ -36,7 +36,7 @@ export const groupNonOverlappingEvents = (events) => {
     let lastResult = result[i - 1] || []
     set = difference(set, lastResult)
 
-    if (flatten(result).includes(event) || !set.length) return result
+    if (includes(flatten(result), event) || !set.length) return result
 
     return result.concat([
       findNonOverlappingEvents(set, [event])
