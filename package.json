@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --content-base example/",
+    "start": "webpack-dev-server --host 0.0.0.0 --inline --hot --content-base example/",
     "build": "NODE_ENV=production webpack -p",
     "test": "mocha",
     "karma": "karma start",
